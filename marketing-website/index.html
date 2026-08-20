@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Envisor — Preview</title>
+<title>Marketing Website — Versions</title>
 <meta name="robots" content="noindex" />
 <style>
   :root {
@@ -41,6 +41,14 @@
     margin-bottom: 3.5rem;
     max-width: 640px;
   }
+  header .back {
+    display: inline-block;
+    margin-bottom: 1.5rem;
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    text-decoration: none;
+  }
+  header .back:hover { color: var(--text); }
   header h1 {
     font-size: 2rem;
     font-weight: 650;
@@ -58,7 +66,7 @@
     grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
     gap: 1.5rem;
     width: 100%;
-    max-width: 640px;
+    max-width: 980px;
   }
   a.card {
     display: flex;
@@ -112,30 +120,40 @@
 </head>
 <body>
   <header>
-    <h1>Envisor</h1>
-    <p>Click through to the product or the marketing site.</p>
+    <a class="back" href="../">← Back to Envisor</a>
+    <h1>Marketing Website</h1>
+    <p>Three in-progress design directions. Click through to explore each one.</p>
   </header>
 
   <main class="cards">
-    <a class="card" href="./launchpad/">
+    <a class="card" href="../marketing-v1/">
       <div>
-        <div class="kicker">Product</div>
-        <h2>Launchpad</h2>
-        <p>Guided workflow app for taking a project through intake, review, and readiness phases.</p>
+        <div class="kicker">V1</div>
+        <h2>SaaS / Product</h2>
+        <p>Product-led marketing site direction, focused on the platform and feature set.</p>
       </div>
-      <span class="go">Open the app →</span>
+      <span class="go">View V1 →</span>
     </a>
 
-    <a class="card" href="./marketing-website/">
+    <a class="card" href="../marketing-v2/">
       <div>
-        <div class="kicker">Marketing</div>
-        <h2>Marketing Website</h2>
-        <p>Three in-progress design directions — V1, V2, and V3.</p>
+        <div class="kicker">V2</div>
+        <h2>Brand / Agency</h2>
+        <p>Dark, cinematic marketing site direction with a brand-forward feel.</p>
       </div>
-      <span class="go">View versions →</span>
+      <span class="go">View V2 →</span>
+    </a>
+
+    <a class="card" href="../marketing-v3/">
+      <div>
+        <div class="kicker">V3</div>
+        <h2>Harvey-Inspired</h2>
+        <p>Editorial serif direction with real product content, logo wall, and testimonials.</p>
+      </div>
+      <span class="go">View V3 →</span>
     </a>
   </main>
 
-  <footer>Shared preview — not for public distribution.</footer>
+  <footer>Local preview — not for public distribution.</footer>
 </body>
 </html>
