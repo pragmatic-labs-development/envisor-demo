@@ -1,0 +1,473 @@
+/* ===================================================================
+   Envisor — Marketing Website v4 "Blended Inspirations"
+   Design register: blend of Legora (cinematic photography energy,
+   forest-green accent, accordion feature list), Hebbia (dark
+   asymmetric bento product grid, tracked serif impact statements),
+   and Sierra (rounded pill buttons/nav, generous logo wall, gradient
+   bento tiles) — reskinned onto v3's cream/ink base and real Envisor
+   content. See HANDOFF.md for full sourcing and rationale.
+   =================================================================== */
+
+:root {
+  --bg: #fafaf9;
+  --ink: #0f0e0d;
+  --muted: #5c5952;
+  --muted-2: #83807a;
+  --border: #e4e1da;
+  --card: #ffffff;
+  --accent: #1f4d3a;        /* forest green — shared Legora/Sierra anchor */
+  --accent-2: #2f6b52;      /* lighter green, for gradients/hover */
+  --accent-tint: #e7efe9;   /* pale green fill for tags/badges */
+  --dark-1: #0f0e0d;
+  --dark-2: #14201b;        /* ink-to-green dark, for bento/lane cards */
+  --dark-3: #0f0e0d;
+  --radius-sm: 999px;       /* pill buttons — Sierra/Legora signature */
+  --radius-md: 14px;
+  --radius-lg: 22px;
+  --max: 1200px;
+  --serif: 'Libre Caslon Text', Georgia, 'Times New Roman', serif;
+  --sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--sans);
+  font-size: 16px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+img { max-width: 100%; display: block; }
+a { color: inherit; text-decoration: none; }
+h1, h2, h3, h4 { font-family: var(--sans); font-weight: 600; margin: 0; line-height: 1.08; letter-spacing: -0.015em; }
+p { margin: 0; }
+.wrap { max-width: var(--max); margin: 0 auto; padding: 0 32px; }
+.eyebrow {
+  font-family: var(--sans);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+.eyebrow--light { color: rgba(250, 250, 249, 0.7); }
+
+/* ---------- Buttons (pill — Sierra/Legora) ---------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-family: var(--sans);
+  font-size: 14px;
+  font-weight: 500;
+  border-radius: var(--radius-sm);
+  height: 40px;
+  padding: 0 22px;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: opacity 0.15s ease, background-color 0.15s ease, transform 0.15s ease;
+  white-space: nowrap;
+}
+.btn:hover { transform: translateY(-1px); }
+.btn-primary { background: var(--accent); color: var(--bg); }
+.btn-primary:hover { background: var(--accent-2); }
+.btn-light { background: var(--bg); color: var(--ink); }
+.btn-light:hover { opacity: 0.85; }
+.btn-outline-light { background: transparent; color: var(--bg); border-color: rgba(250,250,249,0.35); }
+.btn-outline-light:hover { border-color: rgba(250,250,249,0.7); }
+.btn-text { font-family: var(--sans); font-size: 14px; font-weight: 500; display: inline-flex; align-items: center; gap: 6px; color: var(--accent); }
+.btn-text svg { transition: transform 0.15s ease; }
+.btn-text:hover svg { transform: translateX(3px); }
+
+/* ---------- Nav ---------- */
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: var(--bg);
+  border-bottom: 1px solid transparent;
+}
+.nav.is-scrolled { border-bottom-color: var(--border); }
+.nav-inner {
+  max-width: var(--max);
+  margin: 0 auto;
+  height: 72px;
+  padding: 0 32px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+.nav-logo { display: flex; align-items: center; height: 22px; }
+.nav-logo img { height: 100%; width: auto; }
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  flex: 1;
+  padding-left: 40px;
+}
+.nav-links a, .nav-item > span {
+  font-size: 14px;
+  color: var(--ink);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+.nav-item { position: relative; }
+.nav-item svg { opacity: 0.5; }
+.nav-dropdown {
+  position: absolute;
+  top: calc(100% + 14px);
+  left: -16px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  box-shadow: 0 16px 40px rgba(15,14,13,0.10);
+  padding: 10px;
+  width: 280px;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(4px);
+  transition: opacity 0.15s ease, transform 0.15s ease, visibility 0.15s;
+}
+.nav-item:hover .nav-dropdown,
+.nav-item:focus-within .nav-dropdown { opacity: 1; visibility: visible; transform: translateY(0); }
+.nav-dropdown a {
+  display: block;
+  padding: 10px 12px;
+  border-radius: 10px;
+}
+.nav-dropdown a:hover { background: var(--accent-tint); }
+.nav-dropdown .dd-title { font-size: 14px; font-weight: 500; color: var(--ink); }
+.nav-dropdown .dd-desc { font-size: 12.5px; color: var(--muted); margin-top: 2px; }
+.nav-actions { display: flex; align-items: center; gap: 20px; }
+.nav-actions .btn-text { font-size: 14px; color: var(--ink); }
+.nav-mobile-toggle { display: none; }
+
+@media (max-width: 860px) {
+  .nav-links { display: none; }
+  .nav-actions .btn-text { display: none; }
+  .nav-mobile-toggle {
+    display: flex; flex-direction: column; gap: 4px;
+    width: 32px; height: 32px; align-items: center; justify-content: center;
+    background: none; border: none; cursor: pointer;
+  }
+  .nav-mobile-toggle span { width: 20px; height: 1.5px; background: var(--ink); }
+}
+.mobile-nav {
+  display: none;
+  flex-direction: column;
+  padding: 8px 32px 28px;
+  border-top: 1px solid var(--border);
+}
+.mobile-nav.is-open { display: flex; }
+.mobile-nav a { padding: 13px 0; border-bottom: 1px solid var(--border); font-size: 15px; }
+.mobile-nav .btn { margin-top: 18px; align-self: flex-start; }
+
+/* ---------- Hero (sans headline — Legora register) ---------- */
+.hero { padding-top: 56px; }
+.hero-grid {
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: 0 32px 64px;
+  display: grid;
+  grid-template-columns: 7fr 5fr;
+  gap: 32px;
+}
+.hero-eyebrow { margin-bottom: 22px; }
+.hero-headline {
+  font-family: var(--sans);
+  font-weight: 600;
+  font-size: clamp(40px, 5.2vw, 66px);
+  line-height: 1.04;
+  letter-spacing: -0.02em;
+  max-width: 15ch;
+}
+.hero-side {
+  padding-top: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+  max-width: 34ch;
+}
+.hero-sub { font-size: 17px; line-height: 1.55; color: var(--muted); }
+.hero-cta-row { display: flex; align-items: center; gap: 22px; }
+
+@media (max-width: 860px) {
+  .hero-grid { grid-template-columns: 1fr; }
+  .hero-side { max-width: none; }
+}
+
+/* ---------- Dark grain band — Legora cinematic drama, no stock photo ---------- */
+.grain-band {
+  position: relative;
+  background: linear-gradient(155deg, var(--ink) 0%, var(--dark-2) 55%, var(--accent) 140%);
+  padding: 32px;
+  overflow: hidden;
+}
+.grain-band::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  opacity: 0.06;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+.grain-band-inner {
+  position: relative;
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: 64px 24px;
+  text-align: center;
+}
+.grain-band-inner h2 { color: var(--bg); font-size: clamp(28px, 3.6vw, 42px); max-width: 22ch; margin: 18px auto 0; }
+.grain-caption {
+  max-width: var(--max);
+  margin: 0 auto;
+  padding-top: 14px;
+  font-size: 13px;
+  color: rgba(250,250,249,0.55);
+  text-align: center;
+}
+
+/* ---------- Announcement (Introducing MIRA) ---------- */
+.announce {
+  padding: 108px 32px;
+  text-align: center;
+}
+.announce-badge {
+  display: inline-block;
+  background: var(--accent);
+  color: var(--bg);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  padding: 5px 12px;
+  border-radius: var(--radius-sm);
+  margin-bottom: 22px;
+}
+.announce h2 { font-size: clamp(32px, 4.2vw, 48px); margin-bottom: 18px; }
+.announce p {
+  max-width: 46ch;
+  margin: 0 auto 32px;
+  color: var(--muted);
+  font-size: 17px;
+  line-height: 1.55;
+}
+
+/* ---------- Logo wall (Sierra — bigger, warmer, natural color) ---------- */
+.logowall { padding: 96px 32px 130px; text-align: center; background: #fff; }
+.logowall h3 { font-family: var(--sans); font-size: 13px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); margin-bottom: 56px; }
+.logowall-grid {
+  max-width: var(--max);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 64px 40px;
+  align-items: center;
+}
+.logowall-grid img {
+  max-height: 92px;
+  max-width: 200px;
+  width: auto;
+  margin: 0 auto;
+  filter: grayscale(0.15) opacity(0.85);
+  transition: filter 0.2s ease, transform 0.2s ease;
+}
+.logowall-grid img:hover { filter: grayscale(0) opacity(1); transform: translateY(-2px); }
+@media (max-width: 860px) { .logowall-grid { grid-template-columns: repeat(2, 1fr); gap: 40px 24px; } }
+
+/* ---------- Product bento (Hebbia asymmetric grid, real screenshots) ---------- */
+.bento { padding: 0 32px 130px; }
+.bento-intro { max-width: var(--max); margin: 0 auto 32px; text-align: center; }
+.bento-intro h2 { font-size: clamp(28px, 3.4vw, 38px); }
+.bento-grid {
+  max-width: var(--max);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(2, minmax(180px, auto));
+  gap: 20px;
+}
+.bento-tile {
+  position: relative;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+.bento-tile--consultants { grid-column: 1 / 3; grid-row: 1 / 3; background: linear-gradient(160deg, var(--dark-2) 0%, var(--dark-1) 100%); padding: 40px 36px 0; }
+.bento-tile--agencies { grid-column: 3 / 5; grid-row: 1 / 2; background: linear-gradient(160deg, var(--accent) 0%, var(--dark-2) 100%); padding: 32px 32px 0; }
+.bento-tile--shot-a, .bento-tile--shot-b { background: var(--card); border: 1px solid var(--border); }
+.bento-tile--shot-a { grid-column: 3 / 4; grid-row: 2 / 3; }
+.bento-tile--shot-b { grid-column: 4 / 5; grid-row: 2 / 3; }
+.bento-tile h3 { color: var(--bg); font-size: 22px; margin-bottom: 10px; }
+.bento-tile--agencies h3 { font-size: 18px; margin-bottom: 6px; }
+.bento-tile p { color: rgba(250,250,249,0.68); font-size: 14.5px; line-height: 1.5; max-width: 30ch; margin-bottom: 18px; }
+.bento-tile--agencies p { font-size: 13px; max-width: 26ch; margin-bottom: 12px; }
+.bento-tile .btn { align-self: flex-start; }
+.bento-shot { margin-top: auto; overflow: hidden; }
+.bento-tile--consultants .bento-shot { height: 200px; border-radius: var(--radius-md) var(--radius-md) 0 0; }
+.bento-shot img { width: 100%; height: 100%; object-fit: cover; object-position: top; display: block; }
+.bento-tile--shot-a, .bento-tile--shot-b { padding: 14px; justify-content: flex-end; gap: 8px; }
+.bento-tile--shot-a .bento-shot, .bento-tile--shot-b .bento-shot { flex: 1; border-radius: 10px; }
+.bento-tile--shot-a .bento-shot img, .bento-tile--shot-b .bento-shot img { height: 100%; }
+.bento-caption { font-size: 12.5px; color: var(--muted); padding: 0 2px; }
+@media (max-width: 860px) {
+  .bento-grid { grid-template-columns: 1fr; grid-template-rows: none; }
+  .bento-tile--consultants, .bento-tile--agencies, .bento-tile--shot-a, .bento-tile--shot-b { grid-column: 1 / -1; grid-row: auto; }
+  .bento-tile--shot-a .bento-shot, .bento-tile--shot-b .bento-shot { height: 220px; }
+}
+
+/* ---------- Platform accordion (Legora expanding rows) ---------- */
+.platform { padding: 20px 32px 130px; }
+.platform-intro { max-width: 620px; margin: 0 auto 56px; text-align: center; }
+.platform-intro h2 { font-size: clamp(28px, 3.4vw, 40px); margin: 14px 0; }
+.platform-intro p { color: var(--muted); font-size: 16px; line-height: 1.55; }
+.accordion { max-width: var(--max); margin: 0 auto; border-top: 1px solid var(--border); }
+.accordion-row { border-bottom: 1px solid var(--border); }
+.accordion-trigger {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 30px 4px;
+  text-align: left;
+  font-family: var(--sans);
+}
+.accordion-trigger-left { display: flex; align-items: baseline; gap: 18px; }
+.accordion-badge { font-size: 11px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--accent); min-width: 130px; }
+.accordion-title { font-size: 21px; font-weight: 600; color: var(--ink); }
+.accordion-toggle {
+  flex-shrink: 0;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  transition: transform 0.25s ease, background 0.2s ease;
+}
+.accordion-toggle::before, .accordion-toggle::after {
+  content: '';
+  position: absolute;
+  background: var(--ink);
+}
+.accordion-toggle::before { width: 12px; height: 1.4px; }
+.accordion-toggle::after { width: 1.4px; height: 12px; transition: opacity 0.2s ease; }
+.accordion-row.is-open .accordion-toggle { background: var(--accent); border-color: var(--accent); }
+.accordion-row.is-open .accordion-toggle::before, .accordion-row.is-open .accordion-toggle::after { background: var(--bg); }
+.accordion-row.is-open .accordion-toggle::after { opacity: 0; }
+.accordion-panel {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.3s ease;
+}
+.accordion-row.is-open .accordion-panel { grid-template-rows: 1fr; }
+.accordion-panel-inner { overflow: hidden; }
+.accordion-panel p { max-width: 62ch; color: var(--muted); font-size: 15.5px; line-height: 1.6; padding: 0 4px 30px 148px; }
+.kb-tags { display: flex; flex-wrap: wrap; gap: 6px; padding: 0 4px 30px 148px; margin-top: -14px; }
+.kb-tags span { font-size: 11.5px; background: var(--accent-tint); padding: 4px 10px; border-radius: 20px; color: var(--accent); }
+@media (max-width: 640px) {
+  .accordion-trigger-left { flex-direction: column; gap: 6px; align-items: flex-start; }
+  .accordion-panel p, .kb-tags { padding-left: 4px; }
+}
+
+/* ---------- Workflow ---------- */
+.workflow { padding: 0 32px 130px; }
+.workflow-intro { max-width: var(--max); margin: 0 auto 48px; text-align: center; }
+.workflow-intro h2 { font-size: clamp(28px, 3.4vw, 38px); margin-top: 14px; }
+.workflow-steps {
+  max-width: var(--max);
+  margin: 0 auto;
+  list-style: none;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 28px;
+}
+.workflow-steps li { border-top: 2px solid var(--accent); padding-top: 20px; }
+.workflow-num { font-family: var(--serif); font-size: 15px; color: var(--muted-2); display: block; margin-bottom: 10px; }
+.workflow-steps h4 { font-size: 17px; margin-bottom: 8px; }
+.workflow-steps p { font-size: 14px; color: var(--muted); line-height: 1.5; }
+@media (max-width: 860px) { .workflow-steps { grid-template-columns: 1fr 1fr; } }
+
+/* ---------- Impact band (kept light — grain-band is the one dark moment) ---------- */
+.impact { background: var(--accent-tint); padding: 100px 32px; }
+.impact-inner { max-width: var(--max); margin: 0 auto; text-align: center; }
+.impact h2 { color: var(--ink); font-size: clamp(30px, 3.8vw, 46px); max-width: 20ch; margin: 18px auto 56px; }
+.impact-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  max-width: 900px;
+  margin: 0 auto;
+}
+.impact-stat { border-top: 2px solid var(--accent); padding-top: 20px; text-align: left; }
+.impact-num { font-family: var(--serif); font-size: 22px; color: var(--ink); display: block; margin-bottom: 8px; }
+.impact-label { font-size: 14px; color: var(--muted); line-height: 1.5; }
+@media (max-width: 860px) { .impact-grid { grid-template-columns: 1fr; } }
+
+/* ---------- Testimonials (Hebbia-style tracked serif pull-quotes) ---------- */
+.testimonials { padding: 130px 32px; text-align: center; }
+.testimonials h2 { font-size: clamp(26px, 3.2vw, 36px); max-width: 22ch; margin: 0 auto 56px; }
+.testimonial-grid {
+  max-width: var(--max);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  text-align: left;
+}
+.testimonial { border-top: 2px solid var(--ink); padding-top: 22px; }
+.testimonial p { font-family: var(--serif); font-size: 19px; line-height: 1.4; margin-bottom: 18px; }
+.testimonial cite { font-family: var(--sans); font-size: 13px; color: var(--muted); font-style: normal; }
+@media (max-width: 860px) { .testimonial-grid { grid-template-columns: 1fr; } }
+
+/* ---------- Final CTA ---------- */
+.final-cta {
+  background: var(--ink);
+  padding: 140px 32px;
+  text-align: center;
+}
+.final-cta h2 { color: var(--bg); font-size: clamp(30px, 4vw, 48px); max-width: 18ch; margin: 0 auto 36px; }
+
+/* ---------- Footer ---------- */
+.footer { padding: 72px 32px 40px; background: var(--ink); }
+.footer-inner {
+  max-width: var(--max);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1.6fr repeat(4, 1fr);
+  gap: 32px;
+}
+.footer-logo { height: 20px; display: block; margin-bottom: 14px; }
+.footer-brand p { font-size: 14px; color: rgba(250,250,249,0.55); max-width: 26ch; line-height: 1.5; }
+.footer-col h5 { font-size: 12px; text-transform: uppercase; letter-spacing: 0.08em; color: rgba(250,250,249,0.4); margin-bottom: 14px; }
+.footer-col a { display: block; font-size: 14px; padding: 6px 0; color: var(--bg); }
+.footer-col a:hover { color: var(--accent-2); }
+.footer-bottom { max-width: var(--max); margin: 48px auto 0; padding-top: 24px; border-top: 1px solid rgba(250,250,249,0.12); font-size: 13px; color: rgba(250,250,249,0.4); }
+@media (max-width: 860px) { .footer-inner { grid-template-columns: 1fr 1fr; } }
+
+/* ---------- Scroll reveal ---------- */
+.reveal { opacity: 0; transform: translateY(16px); transition: opacity 0.6s ease, transform 0.6s ease; }
+.reveal.is-in { opacity: 1; transform: translateY(0); }
+@media (prefers-reduced-motion: reduce) {
+  .reveal { opacity: 1; transform: none; transition: none; }
+  html { scroll-behavior: auto; }
+}
