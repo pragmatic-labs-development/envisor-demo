@@ -303,7 +303,7 @@ p { margin: 0; }
 }
 .logo-cell:hover { border-color: var(--accent); transform: translateY(-2px); }
 .logo-cell img {
-  max-height: 40px;
+  max-height: 48px;
   max-width: 100%;
   width: auto;
   height: auto;
