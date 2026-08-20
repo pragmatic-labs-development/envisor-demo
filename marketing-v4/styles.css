@@ -266,20 +266,33 @@ p { margin: 0; }
   margin: 0 auto;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 64px 40px;
+  gap: 16px;
+}
+/* every logo gets the same card footprint, regardless of its own aspect ratio
+   or optical weight — the boundary carries the visual rhythm, not the mark */
+.logo-cell {
+  height: 104px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  display: flex;
   align-items: center;
+  justify-content: center;
+  padding: 22px 28px;
+  transition: border-color 0.2s ease, transform 0.2s ease;
 }
-.logowall-grid img {
-  max-height: 92px;
-  max-width: 200px;
+.logo-cell:hover { border-color: var(--accent); transform: translateY(-2px); }
+.logo-cell img {
+  max-height: 40px;
+  max-width: 100%;
   width: auto;
-  margin: 0 auto;
-  filter: none;
-  opacity: 1;
-  transition: transform 0.2s ease;
+  height: auto;
 }
-.logowall-grid img:hover { transform: translateY(-2px); }
-@media (max-width: 860px) { .logowall-grid { grid-template-columns: repeat(2, 1fr); gap: 40px 24px; } }
+@media (max-width: 860px) {
+  .logowall-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+  .logo-cell { height: 92px; padding: 18px 22px; }
+  .logo-cell img { max-height: 34px; }
+}
 
 /* ---------- Product bento (Hebbia asymmetric grid, real screenshots) ---------- */
 .bento { padding: 0 32px 130px; }
