@@ -21,9 +21,30 @@
   --dark-1: #0f0e0d;
   --dark-2: #14201b;        /* ink-to-green dark, for bento/lane cards */
   --dark-3: #0f0e0d;
-  --radius-sm: 999px;       /* pill buttons — Sierra/Legora signature */
-  --radius-md: 14px;
-  --radius-lg: 22px;
+
+  /* radius scale — every radius used anywhere on the page routes through one
+     of these five, named, so the vocabulary is auditable in one place */
+  --radius-sm: 999px;       /* pill buttons/tags — Sierra/Legora signature */
+  --radius-md: 14px;        /* small cards: nav dropdown, logo cells */
+  --radius-lg: 22px;        /* standard cards: announce, impact, testimonials */
+  --radius-xl: 28px;        /* accordion capsules — Legora's own shape */
+  --radius-sharp: 8px;      /* the one deliberate exception: Hebbia bento tiles */
+
+  /* spacing scale — every section's top+bottom padding is one of these three,
+     applied explicitly on both sides, so no section depends on a neighbor's
+     padding to create its own gap */
+  --space-tight: 96px;      /* transitional sections: announce, logo wall */
+  --space-lg: 130px;        /* standard content sections */
+  --space-xl: 140px;        /* bookends: hero band, final CTA */
+
+  /* gradients — named so the palette is visible without reading comments */
+  --gradient-announce: linear-gradient(130deg, #8DA46F 0%, #4A6D4E 100%);
+  --gradient-impact-blue: linear-gradient(131deg, #3D78B6 29.8%, #03BDF5 175.51%);
+  --gradient-impact-terracotta: linear-gradient(130deg, #C2674D 0%, #A2462D 100%);
+  --bento-charcoal: #2D2828;
+  --bento-slate: #57657A;
+  --bento-mist: #EDF0F3;
+
   --max: 1200px;
   --serif: 'Libre Caslon Text', Georgia, 'Times New Roman', serif;
   --sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
@@ -147,7 +168,7 @@ p { margin: 0; }
 .nav-dropdown a {
   display: block;
   padding: 10px 12px;
-  border-radius: 10px;
+  border-radius: var(--radius-md);
 }
 .nav-dropdown a:hover { background: var(--accent-tint); }
 .nav-dropdown .dd-title { font-size: 14px; font-weight: 500; color: var(--ink); }
@@ -186,7 +207,7 @@ p { margin: 0; }
     linear-gradient(to bottom, rgba(0,0,0,0.28) 0%, rgba(0,0,0,0) 22%, rgba(0,0,0,0) 68%, rgba(0,0,0,0.32) 100%),
     linear-gradient(160deg, var(--ink) 0%, var(--dark-2) 50%, var(--accent) 155%);
   overflow: hidden;
-  padding: 120px 32px 140px;
+  padding: var(--space-xl) 32px;
 }
 .hero-band::before {
   content: '';
@@ -208,7 +229,7 @@ p { margin: 0; }
   font-size: clamp(36px, 5.6vw, 80px);
   line-height: 1.08;
   letter-spacing: -0.01em;
-  color: #f4f1eb;
+  color: var(--bg);
   margin: 22px 0 32px;
 }
 .hero-band-sub {
@@ -227,12 +248,11 @@ p { margin: 0; }
 }
 
 /* ---------- Announcement (Introducing MIRA) — Sierra gradient bento card ---------- */
-.announce { padding: 96px 32px; }
+.announce { padding: var(--space-tight) 32px; }
 .announce-card {
   max-width: var(--max);
   margin: 0 auto;
-  /* green gradient sampled from sierra.ai's own bento cards */
-  background: linear-gradient(130deg, #8DA46F 0%, #4A6D4E 100%);
+  background: var(--gradient-announce);
   border-radius: var(--radius-lg);
   padding: 88px 40px;
   text-align: center;
@@ -259,13 +279,13 @@ p { margin: 0; }
 @media (max-width: 640px) { .announce-card { padding: 56px 28px; border-radius: var(--radius-md); } }
 
 /* ---------- Logo wall (Sierra — bigger, warmer, natural color) ---------- */
-.logowall { padding: 96px 32px 130px; text-align: center; background: #fff; }
+.logowall { padding: var(--space-tight) 32px; text-align: center; }
 .logowall h3 { font-family: var(--sans); font-size: 13px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); margin-bottom: 56px; }
 .logowall-grid {
   max-width: var(--max);
   margin: 0 auto;
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(5, 1fr);
   gap: 16px;
 }
 /* every logo gets the same card footprint, regardless of its own aspect ratio
@@ -295,7 +315,7 @@ p { margin: 0; }
 }
 
 /* ---------- Product bento (Hebbia asymmetric grid, real screenshots) ---------- */
-.bento { padding: 0 32px 130px; }
+.bento { padding: var(--space-lg) 32px; }
 .bento-intro { max-width: var(--max); margin: 0 auto 32px; text-align: center; }
 .bento-intro h2 { font-size: clamp(28px, 3.4vw, 38px); }
 .bento-grid {
@@ -308,30 +328,30 @@ p { margin: 0; }
 }
 .bento-tile {
   position: relative;
-  border-radius: 8px; /* sampled from hebbia.com's bento cards — deliberately sharper
-                          than the 20px Sierra gradient cards elsewhere on the page,
-                          so this section reads as its own "Hebbia mode" */
+  border-radius: var(--radius-sharp); /* the one deliberately sharper geometry on
+                                          the page — marks this section as its own
+                                          "Hebbia mode" against the pill/22px rest */
   overflow: hidden;
   display: flex;
   flex-direction: column;
 }
 /* tile hues mixed per Hebbia's actual pattern (black / mid blue-gray / dark
    charcoal / light blue-gray) rather than one repeated dark-green gradient */
-.bento-tile--consultants { grid-column: 1 / 3; grid-row: 1 / 3; background: linear-gradient(160deg, #2D2828 0%, var(--dark-1) 100%); padding: 40px 36px 0; }
-.bento-tile--agencies { grid-column: 3 / 5; grid-row: 1 / 2; background: linear-gradient(160deg, #57657A 0%, var(--dark-2) 100%); padding: 32px 32px 0; }
-.bento-tile--shot-a, .bento-tile--shot-b { background: #EDF0F3; border: 1px solid var(--border); }
+.bento-tile--consultants { grid-column: 1 / 3; grid-row: 1 / 3; background: linear-gradient(160deg, var(--bento-charcoal) 0%, var(--dark-1) 100%); padding: 40px 36px 0; }
+.bento-tile--agencies { grid-column: 3 / 5; grid-row: 1 / 2; background: linear-gradient(160deg, var(--bento-slate) 0%, var(--dark-2) 100%); padding: 32px 32px 0; }
+.bento-tile--shot-a, .bento-tile--shot-b { background: var(--bento-mist); border: 1px solid var(--border); }
 .bento-tile--shot-a { grid-column: 3 / 4; grid-row: 2 / 3; }
 .bento-tile--shot-b { grid-column: 4 / 5; grid-row: 2 / 3; }
 .bento-tile h3 { color: var(--bg); font-size: 22px; margin-bottom: 10px; }
 .bento-tile--agencies h3 { font-size: 18px; margin-bottom: 6px; }
 .bento-tile p { color: rgba(250,250,249,0.68); font-size: 14.5px; line-height: 1.5; max-width: 30ch; margin-bottom: 18px; }
 .bento-tile--agencies p { font-size: 13px; max-width: 26ch; margin-bottom: 12px; }
-.bento-tile .btn { align-self: flex-start; border-radius: 4px; } /* Hebbia's own CTA radius — the one deliberately sharp corner on an otherwise all-pill page */
+.bento-tile .btn { align-self: flex-start; } /* stays pill — consistent with every other button on the page */
 .bento-shot { margin-top: auto; overflow: hidden; }
-.bento-tile--consultants .bento-shot { height: 200px; border-radius: 6px 6px 0 0; }
+.bento-tile--consultants .bento-shot { height: 200px; border-radius: 4px 4px 0 0; }
 .bento-shot img { width: 100%; height: 100%; object-fit: cover; object-position: top; display: block; }
 .bento-tile--shot-a, .bento-tile--shot-b { padding: 14px; justify-content: flex-end; gap: 8px; }
-.bento-tile--shot-a .bento-shot, .bento-tile--shot-b .bento-shot { flex: 1; border-radius: 6px; }
+.bento-tile--shot-a .bento-shot, .bento-tile--shot-b .bento-shot { flex: 1; border-radius: 4px; }
 .bento-tile--shot-a .bento-shot img, .bento-tile--shot-b .bento-shot img { height: 100%; }
 .bento-caption { font-size: 12.5px; color: var(--muted); padding: 0 2px; }
 @media (max-width: 860px) {
@@ -341,7 +361,7 @@ p { margin: 0; }
 }
 
 /* ---------- Platform accordion (Legora expanding rows) ---------- */
-.platform { padding: 20px 32px 130px; }
+.platform { padding: var(--space-lg) 32px; }
 .platform-intro { max-width: 620px; margin: 0 auto 56px; text-align: center; }
 .platform-intro h2 { font-size: clamp(28px, 3.4vw, 40px); margin: 14px 0; }
 .platform-intro p { color: var(--muted); font-size: 16px; line-height: 1.55; }
@@ -354,7 +374,7 @@ p { margin: 0; }
 .accordion { max-width: var(--max); margin: 0 auto; display: flex; flex-direction: column; gap: 10px; }
 .accordion-row {
   background: rgba(15,14,13,0.035);
-  border-radius: 28px;
+  border-radius: var(--radius-xl);
   transition: background 0.25s ease;
 }
 .accordion-row.is-open { background: var(--accent-tint); }
@@ -378,7 +398,7 @@ p { margin: 0; }
   flex-shrink: 0;
   width: 28px;
   height: 28px;
-  border-radius: 48px;
+  border-radius: 50%;
   background: rgba(15,14,13,0.14);
   display: flex;
   align-items: center;
@@ -405,7 +425,7 @@ p { margin: 0; }
 .accordion-panel-inner { overflow: hidden; }
 .accordion-panel p { max-width: 62ch; color: var(--muted); font-size: 15.5px; line-height: 1.6; padding: 0 32px 26px 176px; }
 .kb-tags { display: flex; flex-wrap: wrap; gap: 6px; padding: 0 32px 26px 176px; margin-top: -14px; }
-.kb-tags span { font-size: 11.5px; background: rgba(255,255,255,0.7); padding: 4px 10px; border-radius: 20px; color: var(--accent); }
+.kb-tags span { font-size: 11.5px; background: rgba(255,255,255,0.7); padding: 4px 10px; border-radius: var(--radius-sm); color: var(--accent); }
 @media (max-width: 640px) {
   .accordion-trigger { padding: 20px 22px; }
   .accordion-trigger-left { flex-direction: column; gap: 6px; align-items: flex-start; }
@@ -413,7 +433,7 @@ p { margin: 0; }
 }
 
 /* ---------- Workflow ---------- */
-.workflow { padding: 0 32px 130px; }
+.workflow { padding: var(--space-lg) 32px; }
 .workflow-intro { max-width: var(--max); margin: 0 auto 48px; text-align: center; }
 .workflow-intro h2 { font-size: clamp(28px, 3.4vw, 38px); margin-top: 14px; }
 .workflow-steps {
@@ -432,7 +452,7 @@ p { margin: 0; }
 @media (max-width: 860px) { .workflow-steps { grid-template-columns: 1fr 1fr; } }
 
 /* ---------- Impact band — Sierra gradient tiles (green/blue pairing) ---------- */
-.impact { background: var(--bg); padding: 110px 32px; }
+.impact { background: var(--bg); padding: var(--space-lg) 32px; }
 .impact-inner { max-width: var(--max); margin: 0 auto; text-align: center; }
 .impact h2 { color: var(--ink); font-size: clamp(30px, 3.8vw, 46px); max-width: 20ch; margin: 18px auto 56px; }
 .impact-grid {
@@ -446,9 +466,9 @@ p { margin: 0; }
 /* three of Sierra's four sampled bento gradients — blue, terracotta, and a pale
    green-tint (ours, to stay legible next to the green already used on the
    announce card and buttons) so the trio doesn't repeat a hue */
-.impact-stat--a { background: linear-gradient(131deg, #3D78B6 29.8%, #03BDF5 175.51%); }
-.impact-stat--b { background: linear-gradient(130deg, #C2674D 0%, #A2462D 100%); }
-.impact-stat--c { background: linear-gradient(160deg, var(--accent-tint) 0%, #ffffff 100%); }
+.impact-stat--a { background: var(--gradient-impact-blue); }
+.impact-stat--b { background: var(--gradient-impact-terracotta); }
+.impact-stat--c { background: linear-gradient(160deg, var(--accent-tint) 0%, var(--card) 100%); }
 .impact-stat--a .impact-num, .impact-stat--a .impact-label,
 .impact-stat--b .impact-num, .impact-stat--b .impact-label { color: var(--bg); }
 .impact-stat--a .impact-label, .impact-stat--b .impact-label { color: rgba(255,255,255,0.82); }
@@ -459,7 +479,7 @@ p { margin: 0; }
 @media (max-width: 860px) { .impact-grid { grid-template-columns: 1fr; } }
 
 /* ---------- Testimonials (Harvey serif pull-quotes, Sierra card wrap) ---------- */
-.testimonials { padding: 130px 32px; text-align: center; }
+.testimonials { padding: var(--space-lg) 32px; text-align: center; }
 .testimonials h2 { font-size: clamp(26px, 3.2vw, 36px); max-width: 22ch; margin: 0 auto 56px; }
 .testimonial-grid {
   max-width: var(--max);
@@ -477,7 +497,7 @@ p { margin: 0; }
 /* ---------- Final CTA ---------- */
 .final-cta {
   background: var(--ink);
-  padding: 140px 32px;
+  padding: var(--space-xl) 32px;
   text-align: center;
 }
 .final-cta h2 { color: var(--bg); font-size: clamp(30px, 4vw, 48px); max-width: 18ch; margin: 0 auto 36px; }
