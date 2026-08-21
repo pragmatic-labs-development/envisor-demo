@@ -42,7 +42,7 @@
   --gradient-impact-blue: linear-gradient(131deg, #3D78B6 29.8%, #03BDF5 175.51%);
   --gradient-impact-terracotta: linear-gradient(130deg, #C2674D 0%, #A2462D 100%);
   --bento-charcoal: #2D2828;
-  --bento-slate: #57657A;
+  --bento-slate: #5A564F; /* was #57657A, a blue-gray left over from the pre-pivot palette — replaced with a warm neutral gray on-palette with the rest of the black/yellow/white/gray site */
   --bento-mist: #EDF0F3;
 
   --max: 1200px;
@@ -281,53 +281,65 @@ p { margin: 0; }
 @media (max-width: 640px) { .announce-card { padding: 56px 28px; border-radius: var(--radius-md); } }
 
 /* ---------- Logo wall (Sierra — bigger, warmer, natural color) ---------- */
+/* Classier logo wall (2026-08-21): the bordered-card treatment read as
+   utilitarian/form-like. Since every logo here is already a flat black
+   silhouette, the card chrome was doing the unifying work a restrained
+   opacity treatment can do instead — logos now float directly on the page,
+   muted until hovered, bracketed by hairline rules like a masthead rather
+   than boxed like form fields. */
 .logowall { padding: var(--space-tight) 32px; text-align: center; }
-.logowall h3 { font-family: var(--sans); font-size: 13px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); margin-bottom: 56px; }
+.logowall h3 { font-family: var(--sans); font-size: 12px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted-2); margin: 0 auto 48px; position: relative; display: inline-block; padding: 0 20px; }
+.logowall h3::before, .logowall h3::after { content: ''; position: absolute; top: 50%; width: 40px; height: 1px; background: var(--border); }
+.logowall h3::before { right: 100%; }
+.logowall h3::after { left: 100%; }
 .logowall-grid {
   max-width: var(--max);
   margin: 0 auto;
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   gap: 16px;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
 }
-/* every logo gets the same card footprint, regardless of its own aspect ratio
-   or optical weight — the boundary carries the visual rhythm, not the mark */
 .logo-cell {
-  height: 104px;
-  background: var(--card);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-md);
+  height: 108px;
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 22px 28px;
-  transition: border-color 0.2s ease, transform 0.2s ease;
 }
-.logo-cell:hover { border-color: var(--accent); transform: translateY(-2px); }
 .logo-cell img {
-  max-height: 48px;
+  max-height: 42px;
   max-width: 100%;
   width: auto;
   height: auto;
+  opacity: 0.5;
+  transition: opacity 0.2s ease;
 }
-.logo-cell img.logo-lg { max-height: 66px; }
+.logo-cell img.logo-lg { max-height: 58px; }
+.logo-cell:hover img { opacity: 1; }
 @media (max-width: 860px) {
   .logowall-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
   .logo-cell { height: 92px; padding: 18px 22px; }
-  .logo-cell img { max-height: 34px; }
-  .logo-cell img.logo-lg { max-height: 48px; }
+  .logo-cell img { max-height: 32px; }
+  .logo-cell img.logo-lg { max-height: 44px; }
 }
 
 /* ---------- Product bento (Hebbia asymmetric grid, real screenshots) ---------- */
 .bento { padding: var(--space-lg) 32px; }
-.bento-intro { max-width: var(--max); margin: 0 auto 32px; text-align: center; }
-.bento-intro h2 { font-size: clamp(28px, 3.4vw, 38px); }
+.bento-intro { max-width: 620px; margin: 0 auto 40px; text-align: center; }
+.bento-intro h2 { font-size: clamp(28px, 3.4vw, 38px); margin: 14px 0; }
+.bento-intro p { color: var(--muted); font-size: 16px; line-height: 1.55; }
+/* Simplified to two equal tiles (2026-08-21): the "For Public Agencies" tile
+   previously sat above two extra small tiles that re-showed the same map
+   image plus a dashboard shot — three images doing one tile's job. Dropped
+   the two small tiles entirely so Consultants and Agencies are a plain,
+   symmetric pair, each making its point with exactly one screenshot. */
 .bento-grid {
   max-width: var(--max);
   margin: 0 auto;
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  grid-template-rows: repeat(2, minmax(180px, auto));
+  grid-template-columns: repeat(2, 1fr);
   gap: 10px; /* sampled from hebbia.com's own bento grid gap */
 }
 .bento-tile {
@@ -338,34 +350,20 @@ p { margin: 0; }
   overflow: hidden;
   display: flex;
   flex-direction: column;
+  padding: 40px 36px 0;
 }
-/* tile hues mixed per Hebbia's actual pattern (black / mid blue-gray / dark
-   charcoal / light blue-gray) rather than one repeated dark-green gradient */
-.bento-tile--consultants { grid-column: 1 / 3; grid-row: 1 / 3; background: linear-gradient(160deg, var(--bento-charcoal) 0%, var(--dark-1) 100%); padding: 40px 36px 0; }
-.bento-tile--agencies { grid-column: 3 / 5; grid-row: 1 / 2; background: linear-gradient(160deg, var(--bento-slate) 0%, var(--dark-2) 100%); padding: 32px 32px 0; }
-.bento-tile--shot-a, .bento-tile--shot-b { background: var(--bento-mist); border: 1px solid var(--border); }
-.bento-tile--shot-a { grid-column: 3 / 4; grid-row: 2 / 3; }
-.bento-tile--shot-b { grid-column: 4 / 5; grid-row: 2 / 3; }
+.bento-tile--consultants { background: linear-gradient(160deg, var(--bento-charcoal) 0%, var(--dark-1) 100%); }
+.bento-tile--agencies { background: linear-gradient(160deg, var(--bento-slate) 0%, var(--dark-2) 100%); }
 .bento-tile h3 { color: var(--bg); font-size: 22px; margin-bottom: 10px; }
-.bento-tile--agencies h3 { font-size: 18px; margin-bottom: 6px; }
 .bento-tile p { color: rgba(250,250,249,0.68); font-size: 14.5px; line-height: 1.5; max-width: 30ch; margin-bottom: 18px; }
-.bento-tile--agencies p { font-size: 13px; max-width: 26ch; margin-bottom: 12px; }
 .bento-tile .btn { align-self: flex-start; } /* stays pill — consistent with every other button on the page */
-.bento-shot { margin-top: auto; overflow: hidden; }
 /* Harvey's own tiles bleed the screenshot flush to the tile's left/right edges,
    flat top corners (no radius — the tile's own overflow:hidden clips the outer
    corners), cropped hard at the bottom rather than framed as an inset card */
-.bento-tile--consultants .bento-shot { height: 220px; margin: auto -36px 0; border-radius: 0; }
-.bento-tile--agencies .bento-shot { height: 220px; margin: auto -32px 0; border-radius: 0; }
+.bento-shot { margin-top: auto; overflow: hidden; height: 260px; margin-left: -36px; margin-right: -36px; border-radius: 0; }
 .bento-shot img { width: 100%; height: 100%; object-fit: cover; object-position: top; display: block; }
-.bento-tile--shot-a, .bento-tile--shot-b { padding: 14px; justify-content: flex-end; gap: 8px; }
-.bento-tile--shot-a .bento-shot, .bento-tile--shot-b .bento-shot { flex: 1; border-radius: 4px; }
-.bento-tile--shot-a .bento-shot img, .bento-tile--shot-b .bento-shot img { height: 100%; }
-.bento-caption { font-size: 12.5px; color: var(--muted); padding: 0 2px; }
 @media (max-width: 860px) {
-  .bento-grid { grid-template-columns: 1fr; grid-template-rows: none; }
-  .bento-tile--consultants, .bento-tile--agencies, .bento-tile--shot-a, .bento-tile--shot-b { grid-column: 1 / -1; grid-row: auto; }
-  .bento-tile--shot-a .bento-shot, .bento-tile--shot-b .bento-shot { height: 220px; }
+  .bento-grid { grid-template-columns: 1fr; }
 }
 
 /* ---------- Platform accordion (Legora expanding rows) ---------- */
@@ -459,68 +457,89 @@ p { margin: 0; }
 .workflow-steps p { font-size: 14px; color: var(--muted); line-height: 1.5; }
 @media (max-width: 860px) { .workflow-steps { grid-template-columns: 1fr 1fr; } }
 
-/* ---------- Impact band — Sierra gradient tiles (green/blue pairing) ---------- */
-.impact { background: var(--bg); padding: var(--space-lg) 32px; }
+/* ---------- Impact band — full-bleed dark, tracked-serif stat columns ----------
+   Ground-up redesign (2026-08-21): was three separately-colored bento-style
+   tiles; now one unified dark band (the page's only other two full-bleed dark
+   moments are the announce strip and the footer, so this gives the page a
+   third resting beat) with the stats set as plain typographic columns
+   separated by hairline rules, no card chrome at all. */
+.impact { background: var(--ink); padding: var(--space-lg) 32px; }
 .impact-inner { max-width: var(--max); margin: 0 auto; text-align: center; }
-.impact h2 { color: var(--ink); font-size: clamp(30px, 3.8vw, 46px); max-width: 20ch; margin: 18px auto 56px; }
+.impact h2 { color: var(--bg); font-size: clamp(30px, 3.8vw, 46px); max-width: 20ch; margin: 18px auto 72px; }
 .impact-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
-  max-width: 1020px;
+  max-width: 980px;
   margin: 0 auto;
 }
-.impact-stat { border-radius: var(--radius-lg); padding: 40px 32px; text-align: left; min-height: 230px; display: flex; flex-direction: column; justify-content: flex-end; }
-/* on-palette trio: two dark neutrals plus one bright-yellow "pop" tile, rather
-   than a repeated hue — same asymmetric-emphasis idea as before, new palette */
-.impact-stat--a { background: var(--ink); }
-.impact-stat--b { background: var(--dark-2); }
-.impact-stat--c { background: var(--accent); }
-.impact-stat--a .impact-num, .impact-stat--a .impact-label,
-.impact-stat--b .impact-num, .impact-stat--b .impact-label { color: var(--bg); }
-.impact-stat--a .impact-label, .impact-stat--b .impact-label { color: rgba(250,250,249,0.72); }
-.impact-stat--c .impact-num, .impact-stat--c .impact-label { color: var(--ink); }
-.impact-stat--c .impact-label { color: rgba(15,14,13,0.68); }
-.impact-num { font-family: var(--serif); font-weight: 500; font-size: clamp(26px, 2.8vw, 32px); line-height: 1.15; display: block; margin-bottom: 12px; }
-.impact-label { font-size: 14.5px; line-height: 1.5; }
-.impact-label strong { font-weight: 700; }
-@media (max-width: 860px) { .impact-grid { grid-template-columns: 1fr; } }
+.impact-stat { padding: 0 36px; border-left: 1px solid rgba(250,250,249,0.14); }
+.impact-stat:first-child { border-left: none; }
+.impact-eyebrow { display: block; font-size: 11.5px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); margin-bottom: 16px; }
+.impact-num { font-family: var(--serif); font-weight: 500; font-size: clamp(28px, 3vw, 38px); line-height: 1.15; color: var(--bg); display: block; margin-bottom: 14px; }
+.impact-desc { font-size: 14.5px; line-height: 1.55; color: rgba(250,250,249,0.62); max-width: 24ch; margin: 0 auto; }
+@media (max-width: 860px) {
+  .impact-grid { grid-template-columns: 1fr; gap: 48px; max-width: 360px; }
+  .impact-stat { border-left: none; border-top: 1px solid rgba(250,250,249,0.14); padding: 40px 0 0; }
+  .impact-stat:first-child { border-top: none; padding-top: 0; }
+}
 
 /* ---------- Testimonials (Harvey serif pull-quotes, Sierra card wrap) ---------- */
+/* Ground-up redesign (2026-08-21): was three equal bordered/boxed cards;
+   now a bookended horizontal "quote log" — no card chrome, just hairline
+   rules between rows, editorial-style pairing of a wide serif quote against
+   a narrow fixed-width attribution column. Sits directly below the impact
+   band's vertical-divider columns, so this deliberately uses horizontal
+   rules instead to keep the two sections from reading as the same shape. */
 .testimonials { padding: var(--space-lg) 32px; text-align: center; }
-.testimonials h2 { font-size: clamp(26px, 3.2vw, 36px); max-width: 22ch; margin: 0 auto 56px; }
-.testimonial-grid {
-  max-width: var(--max);
-  margin: 0 auto;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
-  text-align: left;
+.testimonials-inner { max-width: 900px; margin: 0 auto; }
+.testimonials h2 { font-size: clamp(26px, 3.2vw, 36px); max-width: 22ch; margin: 0 auto 64px; }
+.testimonial-list { display: flex; flex-direction: column; border-top: 1px solid var(--border); text-align: left; }
+.testimonial { display: flex; align-items: flex-start; gap: 48px; padding: 36px 0; border-bottom: 1px solid var(--border); }
+.testimonial p { font-family: var(--serif); font-size: 20px; line-height: 1.45; flex: 1; margin: 0; }
+.testimonial cite { flex-shrink: 0; width: 170px; display: flex; flex-direction: column; gap: 4px; font-style: normal; }
+.t-role { font-size: 12px; color: var(--muted-2); }
+.t-org { font-size: 13.5px; font-weight: 600; color: var(--ink); }
+@media (max-width: 760px) {
+  .testimonial { flex-direction: column; gap: 14px; padding: 28px 0; }
+  .testimonial cite { width: auto; flex-direction: row; gap: 8px; }
+  .t-org::before { content: '— '; }
 }
-.testimonial { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 30px 26px; }
-.testimonial p { font-family: var(--serif); font-size: 19px; line-height: 1.4; margin-bottom: 18px; }
-.testimonial cite { font-family: var(--sans); font-size: 13px; color: var(--muted); font-style: normal; }
-@media (max-width: 860px) { .testimonial-grid { grid-template-columns: 1fr; } }
 
 /* ---------- Final CTA ---------- */
-.final-cta {
+/* Ground-up redesign (2026-08-21): was a full-bleed ink slab identical in
+   shape to the footer directly beneath it, so the two ran together as one
+   block. Now a contained rounded card floating on the page's cream
+   background — echoes the hero's contained-frame move from earlier in the
+   page, and gives the footer's own full-bleed dark back some contrast to
+   land against. */
+.final-cta { background: var(--bg); padding: var(--space-xl) 32px; }
+.final-cta-card {
+  max-width: 880px;
+  margin: 0 auto;
   background: var(--ink);
-  padding: var(--space-xl) 32px;
+  border-radius: var(--radius-lg);
+  padding: 76px 48px;
   text-align: center;
 }
+.final-cta-eyebrow { display: block; font-size: 12px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); margin-bottom: 20px; }
 .final-cta h2 { color: var(--bg); font-size: clamp(30px, 4vw, 48px); max-width: 18ch; margin: 0 auto 36px; }
 
 /* ---------- Footer ---------- */
+/* Redesign (2026-08-21): the grid previously reserved 5 tracks
+   (1.6fr + repeat(4,1fr)) but only 2 link columns were ever populated,
+   leaving a large dead gap on the right at desktop widths. Grid now has
+   exactly as many tracks as there are columns, and the freed width goes
+   to the brand column (own CTA button) instead of empty space. */
 .footer { padding: 72px 32px 40px; background: var(--ink); }
 .footer-inner {
   max-width: var(--max);
   margin: 0 auto;
   display: grid;
-  grid-template-columns: 1.6fr repeat(4, 1fr);
-  gap: 32px;
+  grid-template-columns: minmax(240px, 1.7fr) 1fr 1fr;
+  gap: 48px;
 }
 .footer-logo { height: 20px; display: block; margin-bottom: 14px; }
-.footer-brand p { font-size: 14px; color: rgba(250,250,249,0.55); max-width: 26ch; line-height: 1.5; }
+.footer-brand p { font-size: 14px; color: rgba(250,250,249,0.55); max-width: 26ch; line-height: 1.5; margin-bottom: 24px; }
 .footer-col h5 { font-size: 12px; text-transform: uppercase; letter-spacing: 0.08em; color: rgba(250,250,249,0.4); margin-bottom: 14px; }
 .footer-col a { display: block; font-size: 14px; padding: 6px 0; color: var(--bg); }
 .footer-col a:hover { color: var(--accent); }
