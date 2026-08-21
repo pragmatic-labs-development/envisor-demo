@@ -15,11 +15,11 @@
   --muted-2: #83807a;
   --border: #e4e1da;
   --card: #ffffff;
-  --accent: #005032;        /* forest green — sampled directly from legora.com's CTA/brand bar */
-  --accent-2: #00754a;      /* lighter green, for gradients/hover */
-  --accent-tint: #e5eee9;   /* pale green fill for tags/badges */
+  --accent: #F2B400;        /* brand yellow — fills: buttons, active states, badges */
+  --accent-2: #B8860B;      /* deep amber — hover-darken of fills, and text-on-light contexts where bright yellow reads too low-contrast */
+  --accent-tint: #FBEEC7;   /* pale yellow fill for tags/badges */
   --dark-1: #0f0e0d;
-  --dark-2: #14201b;        /* ink-to-green dark, for bento/lane cards */
+  --dark-2: #201f1e;        /* neutral dark gray, for bento/lane cards */
   --dark-3: #0f0e0d;
 
   /* radius scale — every radius used anywhere on the page routes through one
@@ -38,7 +38,7 @@
   --space-xl: 140px;        /* bookends: hero band, final CTA */
 
   /* gradients — named so the palette is visible without reading comments */
-  --gradient-announce: linear-gradient(130deg, #8DA46F 0%, #4A6D4E 100%);
+  --gradient-announce: linear-gradient(130deg, #4a4a48 0%, #1a1a19 100%);
   --gradient-impact-blue: linear-gradient(131deg, #3D78B6 29.8%, #03BDF5 175.51%);
   --gradient-impact-terracotta: linear-gradient(130deg, #C2674D 0%, #A2462D 100%);
   --bento-charcoal: #2D2828;
@@ -72,7 +72,7 @@ p { margin: 0; }
   font-weight: 600;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: var(--accent);
+  color: var(--accent-2);
 }
 .eyebrow--light { color: rgba(250, 250, 249, 0.7); }
 
@@ -94,7 +94,7 @@ p { margin: 0; }
   white-space: nowrap;
 }
 .btn:hover { transform: translateY(-1px); }
-.btn-primary { background: var(--accent); color: var(--bg); }
+.btn-primary { background: var(--accent); color: var(--ink); }
 .btn-primary:hover { background: var(--accent-2); }
 .btn-light { background: var(--bg); color: var(--ink); }
 .btn-light:hover { opacity: 0.85; }
@@ -103,7 +103,7 @@ p { margin: 0; }
 .btn-lg { height: 52px; padding: 0 30px; font-size: 15px; }
 .btn-outline-light { background: transparent; color: var(--bg); border-color: rgba(250,250,249,0.35); }
 .btn-outline-light:hover { border-color: rgba(250,250,249,0.7); }
-.btn-text { font-family: var(--sans); font-size: 14px; font-weight: 500; display: inline-flex; align-items: center; gap: 6px; color: var(--accent); }
+.btn-text { font-family: var(--sans); font-size: 14px; font-weight: 500; display: inline-flex; align-items: center; gap: 6px; color: var(--accent-2); }
 .btn-text svg { transition: transform 0.15s ease; }
 .btn-text:hover svg { transform: translateX(3px); }
 
@@ -126,7 +126,7 @@ p { margin: 0; }
   justify-content: space-between;
   gap: 24px;
 }
-.nav-logo { display: flex; align-items: center; height: 22px; }
+.nav-logo { display: flex; align-items: center; height: 30px; }
 .nav-logo img { height: 100%; width: auto; }
 .nav-links {
   display: flex;
@@ -197,54 +197,56 @@ p { margin: 0; }
 .mobile-nav a { padding: 13px 0; border-bottom: 1px solid var(--border); font-size: 15px; }
 .mobile-nav .btn { margin-top: 18px; align-self: flex-start; }
 
-/* ---------- Hero band — Hebbia scale + Harvey serif on a Legora cinematic dark band ---------- */
-.hero-band {
-  position: relative;
-  /* base tone (no stock photo, per the client's asset-provenance call) plus a
-     vignette echoing Legora's own photo overlay — dark top/bottom, a lighter
-     band through the middle where their photo would show through */
-  background:
-    linear-gradient(to bottom, rgba(0,0,0,0.28) 0%, rgba(0,0,0,0) 22%, rgba(0,0,0,0) 68%, rgba(0,0,0,0.32) 100%),
-    linear-gradient(160deg, var(--ink) 0%, var(--dark-2) 50%, var(--accent) 155%);
-  overflow: hidden;
-  padding: var(--space-xl) 32px;
-}
-.hero-band::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  opacity: 0.07;
-  mix-blend-mode: overlay;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-}
-.hero-band-inner {
-  position: relative;
-  max-width: 1120px;
+/* ---------- Hero — Harvey's split text layout + framed product shot bleeding into a Legora-mood band ---------- */
+.hero-band { position: relative; background: var(--bg); }
+.hero-top {
+  display: grid;
+  grid-template-columns: 1.6fr 1fr;
+  gap: 48px;
+  align-items: center;
+  max-width: var(--max);
   margin: 0 auto;
-  text-align: center;
+  padding: 100px 32px 70px;
 }
-.hero-band-headline {
+.hero-headline {
   font-family: var(--serif);
   font-weight: 400;
-  font-size: clamp(36px, 5.6vw, 80px);
-  line-height: 1.08;
+  font-size: clamp(32px, 3.6vw, 54px);
+  line-height: 1.1;
   letter-spacing: -0.01em;
-  color: var(--bg);
-  margin: 22px 0 32px;
+  color: var(--ink);
+  margin: 18px 0 0;
 }
-.hero-band-sub {
-  font-size: 18px;
+.hero-sub {
+  font-size: 17px;
   line-height: 1.6;
-  color: rgba(250,250,249,0.68);
-  max-width: 52ch;
-  margin: 0 auto;
+  color: var(--muted);
+  max-width: 40ch;
 }
-.hero-cta-row { display: flex; align-items: center; justify-content: center; gap: 24px; margin-top: 40px; }
-.btn-text--light { color: var(--bg); }
+.hero-cta-row { display: flex; align-items: center; gap: 24px; margin-top: 28px; }
 
+.hero-shot-band {
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: 0 32px 100px;
+}
+.hero-shot-frame {
+  position: relative;
+  background: #3a3a38;
+  border-radius: var(--radius-lg);
+  padding: 48px;
+}
+.hero-shot-frame img { width: 100%; display: block; }
+
+@media (max-width: 860px) {
+  .hero-top { grid-template-columns: 1fr; padding: 70px 24px 30px; }
+  .hero-sub { max-width: none; }
+  .hero-shot-frame { padding: 32px; }
+}
 @media (max-width: 640px) {
-  .hero-band { padding: 90px 24px 100px; }
-  .hero-band-headline { font-size: clamp(30px, 9vw, 40px); letter-spacing: 0; }
+  .hero-headline { font-size: clamp(30px, 9vw, 40px); letter-spacing: 0; }
+  .hero-shot-band { padding: 0 20px 60px; }
+  .hero-shot-frame { padding: 20px; border-radius: var(--radius-md); }
 }
 
 /* ---------- Announcement (Introducing MIRA) — Sierra gradient bento card ---------- */
@@ -308,10 +310,12 @@ p { margin: 0; }
   width: auto;
   height: auto;
 }
+.logo-cell img.logo-lg { max-height: 66px; }
 @media (max-width: 860px) {
   .logowall-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
   .logo-cell { height: 92px; padding: 18px 22px; }
   .logo-cell img { max-height: 34px; }
+  .logo-cell img.logo-lg { max-height: 48px; }
 }
 
 /* ---------- Product bento (Hebbia asymmetric grid, real screenshots) ---------- */
@@ -348,7 +352,11 @@ p { margin: 0; }
 .bento-tile--agencies p { font-size: 13px; max-width: 26ch; margin-bottom: 12px; }
 .bento-tile .btn { align-self: flex-start; } /* stays pill — consistent with every other button on the page */
 .bento-shot { margin-top: auto; overflow: hidden; }
-.bento-tile--consultants .bento-shot { height: 200px; border-radius: 4px 4px 0 0; }
+/* Harvey's own tiles bleed the screenshot flush to the tile's left/right edges,
+   flat top corners (no radius — the tile's own overflow:hidden clips the outer
+   corners), cropped hard at the bottom rather than framed as an inset card */
+.bento-tile--consultants .bento-shot { height: 220px; margin: auto -36px 0; border-radius: 0; }
+.bento-tile--agencies .bento-shot { height: 220px; margin: auto -32px 0; border-radius: 0; }
 .bento-shot img { width: 100%; height: 100%; object-fit: cover; object-position: top; display: block; }
 .bento-tile--shot-a, .bento-tile--shot-b { padding: 14px; justify-content: flex-end; gap: 8px; }
 .bento-tile--shot-a .bento-shot, .bento-tile--shot-b .bento-shot { flex: 1; border-radius: 4px; }
@@ -392,7 +400,7 @@ p { margin: 0; }
   font-family: var(--sans);
 }
 .accordion-trigger-left { display: flex; align-items: baseline; gap: 18px; }
-.accordion-badge { font-size: 11px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--accent); min-width: 130px; }
+.accordion-badge { font-size: 11px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--accent-2); min-width: 130px; }
 .accordion-title { font-size: 21px; font-weight: 600; color: var(--ink); }
 .accordion-toggle {
   flex-shrink: 0;
@@ -414,7 +422,7 @@ p { margin: 0; }
 .accordion-toggle::before { width: 11px; height: 1.4px; }
 .accordion-toggle::after { width: 1.4px; height: 11px; transition: opacity 0.2s ease; }
 .accordion-row.is-open .accordion-toggle { background: var(--accent); }
-.accordion-row.is-open .accordion-toggle::before, .accordion-row.is-open .accordion-toggle::after { background: var(--bg); }
+.accordion-row.is-open .accordion-toggle::before, .accordion-row.is-open .accordion-toggle::after { background: var(--ink); }
 .accordion-row.is-open .accordion-toggle::after { opacity: 0; }
 .accordion-panel {
   display: grid;
@@ -425,7 +433,7 @@ p { margin: 0; }
 .accordion-panel-inner { overflow: hidden; }
 .accordion-panel p { max-width: 62ch; color: var(--muted); font-size: 15.5px; line-height: 1.6; padding: 0 32px 26px 176px; }
 .kb-tags { display: flex; flex-wrap: wrap; gap: 6px; padding: 0 32px 26px 176px; margin-top: -14px; }
-.kb-tags span { font-size: 11.5px; background: rgba(255,255,255,0.7); padding: 4px 10px; border-radius: var(--radius-sm); color: var(--accent); }
+.kb-tags span { font-size: 11.5px; background: rgba(255,255,255,0.7); padding: 4px 10px; border-radius: var(--radius-sm); color: var(--accent-2); }
 @media (max-width: 640px) {
   .accordion-trigger { padding: 20px 22px; }
   .accordion-trigger-left { flex-direction: column; gap: 6px; align-items: flex-start; }
@@ -462,20 +470,20 @@ p { margin: 0; }
   max-width: 1020px;
   margin: 0 auto;
 }
-.impact-stat { border-radius: var(--radius-lg); padding: 36px 28px; text-align: left; min-height: 200px; display: flex; flex-direction: column; justify-content: flex-end; }
-/* three of Sierra's four sampled bento gradients — blue, terracotta, and a pale
-   green-tint (ours, to stay legible next to the green already used on the
-   announce card and buttons) so the trio doesn't repeat a hue */
-.impact-stat--a { background: var(--gradient-impact-blue); }
-.impact-stat--b { background: var(--gradient-impact-terracotta); }
-.impact-stat--c { background: linear-gradient(160deg, var(--accent-tint) 0%, var(--card) 100%); }
+.impact-stat { border-radius: var(--radius-lg); padding: 40px 32px; text-align: left; min-height: 230px; display: flex; flex-direction: column; justify-content: flex-end; }
+/* on-palette trio: two dark neutrals plus one bright-yellow "pop" tile, rather
+   than a repeated hue — same asymmetric-emphasis idea as before, new palette */
+.impact-stat--a { background: var(--ink); }
+.impact-stat--b { background: var(--dark-2); }
+.impact-stat--c { background: var(--accent); }
 .impact-stat--a .impact-num, .impact-stat--a .impact-label,
 .impact-stat--b .impact-num, .impact-stat--b .impact-label { color: var(--bg); }
-.impact-stat--a .impact-label, .impact-stat--b .impact-label { color: rgba(255,255,255,0.82); }
+.impact-stat--a .impact-label, .impact-stat--b .impact-label { color: rgba(250,250,249,0.72); }
 .impact-stat--c .impact-num, .impact-stat--c .impact-label { color: var(--ink); }
-.impact-stat--c .impact-label { color: var(--muted); }
-.impact-num { font-family: var(--serif); font-size: 24px; display: block; margin-bottom: 8px; }
-.impact-label { font-size: 14px; line-height: 1.5; }
+.impact-stat--c .impact-label { color: rgba(15,14,13,0.68); }
+.impact-num { font-family: var(--serif); font-weight: 500; font-size: clamp(26px, 2.8vw, 32px); line-height: 1.15; display: block; margin-bottom: 12px; }
+.impact-label { font-size: 14.5px; line-height: 1.5; }
+.impact-label strong { font-weight: 700; }
 @media (max-width: 860px) { .impact-grid { grid-template-columns: 1fr; } }
 
 /* ---------- Testimonials (Harvey serif pull-quotes, Sierra card wrap) ---------- */
@@ -515,7 +523,7 @@ p { margin: 0; }
 .footer-brand p { font-size: 14px; color: rgba(250,250,249,0.55); max-width: 26ch; line-height: 1.5; }
 .footer-col h5 { font-size: 12px; text-transform: uppercase; letter-spacing: 0.08em; color: rgba(250,250,249,0.4); margin-bottom: 14px; }
 .footer-col a { display: block; font-size: 14px; padding: 6px 0; color: var(--bg); }
-.footer-col a:hover { color: var(--accent-2); }
+.footer-col a:hover { color: var(--accent); }
 .footer-bottom { max-width: var(--max); margin: 48px auto 0; padding-top: 24px; border-top: 1px solid rgba(250,250,249,0.12); font-size: 13px; color: rgba(250,250,249,0.4); }
 @media (max-width: 860px) { .footer-inner { grid-template-columns: 1fr 1fr; } }
 
