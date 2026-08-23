@@ -86,6 +86,68 @@
   </div>
 </section>
 
+<section class="showcase">
+  <div class="showcase-head reveal">
+    <span class="eyebrow">Inside the record</span>
+    <h2>Four modules. One connected system.</h2>
+    <p>Every module reads and writes to the same project record — no exports, no re-uploading, no drift between tools.</p>
+  </div>
+  <div class="showcase-grid">
+    <article class="showcase-card reveal">
+      <div class="showcase-card-media">
+        <img src="product-shots/mira-site-intelligence.png" alt="MIRA site intelligence map showing mapped environmental constraints for a project site" loading="lazy">
+      </div>
+      <div class="showcase-card-body">
+        <span class="showcase-icon" aria-hidden="true">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 3L20 7V17L12 21L4 17V7L12 3Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M12 12L20 7.5M12 12V21M12 12L4 7.5" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
+        </span>
+        <h3>MIRA</h3>
+        <span class="showcase-tag">Mapping Intake &amp; Review Assistant</span>
+        <p>A project description and an APN are all MIRA needs to surface concerns, likely petitioners, and mitigation strategies.</p>
+      </div>
+    </article>
+    <article class="showcase-card reveal">
+      <div class="showcase-card-media">
+        <img src="product-shots/cara-review-queue.png" alt="CARA review queue showing drafted comment responses awaiting reviewer sign-off" loading="lazy">
+      </div>
+      <div class="showcase-card-body">
+        <span class="showcase-icon" aria-hidden="true">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M4 5H20V16H9L4 20V16Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M8 9.5H16M8 12.5H13" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+        </span>
+        <h3>CARA</h3>
+        <span class="showcase-tag">CEQA Automated Response Assistant</span>
+        <p>Bracket, group, assign responsible parties and timelines, and generate defensible responses tied to the record.</p>
+      </div>
+    </article>
+    <article class="showcase-card reveal">
+      <div class="showcase-card-media">
+        <img src="product-shots/mira-workflow-composite.png" alt="Initial Study Assistant assembling a review-ready environmental report from public and private data" loading="lazy">
+      </div>
+      <div class="showcase-card-body">
+        <span class="showcase-icon" aria-hidden="true">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><circle cx="10.5" cy="10.5" r="6.5" stroke="currentColor" stroke-width="1.6"/><path d="M19.5 19.5L15.3 15.3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+        </span>
+        <h3>CEQA Search</h3>
+        <span class="showcase-tag">Free semantic search</span>
+        <p>Search statutes, guidance, and precedent in plain language — grounded in citation, not paraphrase.</p>
+      </div>
+    </article>
+    <article class="showcase-card reveal">
+      <div class="showcase-card-media">
+        <img src="product-shots/mira-hero-dashboard.png" alt="Project dashboard tracking mitigation measures and administrative record after approval" loading="lazy">
+      </div>
+      <div class="showcase-card-body">
+        <span class="showcase-icon" aria-hidden="true">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 3L19 6V12C19 16.5 16 19.8 12 21C8 19.8 5 16.5 5 12V6L12 3Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M9 12L11.2 14.2L15.5 9.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </span>
+        <h3>Document Remediation</h3>
+        <span class="showcase-tag">WCAG 2.2 conversion</span>
+        <p>Convert legacy environmental documents to accessible, screen-reader-ready formats without re-authoring.</p>
+      </div>
+    </article>
+  </div>
+</section>
+
 <section class="announce rule-top" id="mira">
   <div class="announce-card reveal">
     <span class="announce-badge">NEW</span>
@@ -363,7 +425,7 @@
         entry.target.classList.add('is-in');
         io.unobserve(entry.target);
       });
-    }, { rootMargin: '0px 0px -8% 0px', threshold: 0.08 });
+    }, { rootMargin: '0px 0px 20% 0px', threshold: 0.01 });
     revealables.forEach(function (el) {
       if (el.getBoundingClientRect().top < window.innerHeight) { el.classList.add('is-in'); }
       else { io.observe(el); }
