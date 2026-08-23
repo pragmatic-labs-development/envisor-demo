@@ -765,6 +765,48 @@ p { margin: 0; }
   .t-org::before { content: '— '; }
 }
 
+/* ---------- Testimonials (Hebbia audit): single large quote block ----------
+   hebbia.com doesn't run a row/card list at all — one large left-aligned
+   quote block with a headshot carries the whole section, full stop. Kept
+   the two smaller supporting quotes rather than dropping them entirely
+   (losing real customer voice felt wrong), but demoted them to a plain
+   stacked list well below the featured quote so the hierarchy stays
+   unmistakably "one quote is the section" rather than three peers. No real
+   headshot photography exists for this quote's speaker, so the avatar is a
+   plain initials tile rather than a fabricated photo. */
+.testimonials-hebbia .testimonials-inner { max-width: 760px; text-align: left; }
+.testimonial-feature { display: flex; gap: 28px; align-items: flex-start; margin-bottom: 56px; }
+.testimonial-feature-avatar {
+  flex-shrink: 0;
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: var(--ink);
+  color: var(--bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--sans);
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+.testimonial-feature-quote { margin: 0; }
+.testimonial-feature-quote p { font-family: var(--serif); font-size: 30px; line-height: 1.32; letter-spacing: var(--lts-display, -0.01em); margin: 0 0 18px; }
+.testimonial-feature-quote cite { display: flex; gap: 10px; align-items: baseline; font-style: normal; }
+.testimonial-feature-quote .t-org { font-size: 15px; font-weight: 600; color: var(--ink); }
+.testimonial-feature-quote .t-role { font-size: 13px; color: var(--muted); }
+.testimonial-support { display: flex; flex-direction: column; gap: 22px; padding-top: 28px; border-top: 1px solid var(--border); }
+.testimonial-support blockquote { margin: 0; display: flex; gap: 16px; align-items: baseline; flex-wrap: wrap; }
+.testimonial-support p { font-size: 15px; color: var(--muted); margin: 0; }
+.testimonial-support cite { font-style: normal; display: inline-flex; gap: 6px; font-size: 13px; flex-shrink: 0; }
+.testimonial-support .t-org { font-weight: 600; color: var(--ink); }
+.testimonial-support .t-role { color: var(--muted-2); }
+@media (max-width: 640px) {
+  .testimonial-feature { flex-direction: column; gap: 18px; }
+  .testimonial-feature-quote p { font-size: 24px; }
+}
+
 /* ---------- Final CTA ---------- */
 /* Ground-up redesign (2026-08-21): was a full-bleed ink slab identical in
    shape to the footer directly beneath it, so the two ran together as one

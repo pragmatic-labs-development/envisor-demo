@@ -379,6 +379,35 @@ p { margin: 0; }
   .hero-shot-crop { max-height: 260px; }
 }
 
+/* ---------- Benefit strip (Sierra audit) ----------
+   sierra.ai runs a three-column icon+headline+description strip directly
+   under the hero, ahead of any product/feature detail — a plain, fast
+   "why this matters" beat that this page never had (its own value
+   propositions were scattered across the bento/impact sections lower down
+   with no single up-front summary). Icons are simple line-art, not literal
+   Sierra iconography, since Sierra's own icons are proprietary illustration;
+   the *pattern* (three flat cards, no card chrome, icon-over-headline) is
+   what's sampled here. */
+.benefits-sierra { padding: var(--space-tight, 56px) 32px var(--space-lg); }
+.benefits-inner { max-width: var(--max); margin: 0 auto; display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; }
+.benefit-card { text-align: left; }
+.benefit-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-md);
+  background: var(--accent-tint);
+  color: var(--accent-2);
+  margin-bottom: 18px;
+}
+.benefit-card h3 { font-size: 18px; font-weight: 600; margin: 0 0 8px; color: var(--ink); }
+.benefit-card p { font-size: 15px; line-height: 1.55; color: var(--muted); margin: 0; }
+@media (max-width: 860px) {
+  .benefits-inner { grid-template-columns: 1fr; gap: 32px; }
+}
+
 /* ---------- Announcement (Introducing MIRA) — Sierra gradient bento card ---------- */
 .announce { padding: var(--space-tight) 32px; }
 .announce-card {
