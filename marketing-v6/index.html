@@ -3,30 +3,22 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Envisor | The Operating System for Environmental Review</title>
+<title>Envisor | Environmental Review's AI Workforce</title>
 <meta name="description" content="Envisor is a purpose-built AI platform for environmental review. Research, draft, respond to comments, and defend environmental documents in one connected system.">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Libre+Caslon+Text:ital@0;1&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
-<div class="topbar">
-  <div class="topbar-inner">
-    <span>New: MIRA, the Mapping Intake &amp; Review Assistant</span>
-    <a href="#mira">Learn more
-      <svg width="12" height="12" viewBox="0 0 14 14" fill="none"><path d="M3 7H11M11 7L7.5 3.5M11 7L7.5 10.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-    </a>
-  </div>
-</div>
 <header class="nav" id="site-nav">
   <div class="nav-inner">
     <a href="/" class="nav-logo"><img src="envisor-logo-ink.svg" alt="Envisor"></a>
     <ul class="nav-links">
       <li class="nav-item" tabindex="0">
-        <span>Solutions
+        <span>Product
           <svg width="10" height="10" viewBox="0 0 12 12" fill="none"><path d="M3 4.5L6 7.5L9 4.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </span>
         <div class="nav-dropdown">
@@ -36,45 +28,73 @@
           <a href="#platform"><span class="dd-title">Document Remediation</span><span class="dd-desc">WCAG 2.2 conversion</span></a>
         </div>
       </li>
-      <li class="nav-item"><a href="#about">About</a></li>
-      <li class="nav-item"><a href="#contact">Contact</a></li>
+      <li class="nav-item" tabindex="0">
+        <span>Who We Serve
+          <svg width="10" height="10" viewBox="0 0 12 12" fill="none"><path d="M3 4.5L6 7.5L9 4.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </span>
+        <div class="nav-dropdown">
+          <a href="#bento"><span class="dd-title">Environmental Consultants</span><span class="dd-desc">Run every project on one platform</span></a>
+          <a href="#bento"><span class="dd-title">Public Agencies</span><span class="dd-desc">A defensible, traceable record</span></a>
+        </div>
+      </li>
+      <li class="nav-item"><a href="#about">About Us</a></li>
+      <li class="nav-item"><a href="#contact">Resources</a></li>
     </ul>
     <div class="nav-actions">
-      <a href="/contact" class="btn btn-ink">Book Demo</a>
+      <a href="/signin" class="nav-signin">Sign In</a>
+      <a href="/contact" class="btn btn-primary">Book a Demo</a>
     </div>
     <button class="nav-mobile-toggle" id="menu-toggle" aria-label="Open menu" aria-expanded="false">
       <span></span><span></span><span></span>
     </button>
   </div>
   <div class="mobile-nav" id="mobile-nav">
-    <a href="#platform">Solutions</a>
-    <a href="#about">About</a>
-    <a href="#contact">Contact</a>
-    <a href="/contact" class="btn btn-ink">Book Demo</a>
+    <a href="#platform">Product</a>
+    <a href="#bento">Who We Serve</a>
+    <a href="#about">About Us</a>
+    <a href="#contact">Resources</a>
+    <a href="/contact" class="btn btn-primary">Book a Demo</a>
   </div>
 </header>
 
-<section class="hero-band">
-  <div class="hero-top">
-    <div class="hero-top-left">
-      <p class="eyebrow">AI-NATIVE ENVIRONMENTAL REVIEW &middot; CEQA &amp; NEPA</p>
-      <h1 class="hero-headline">The Operating System<br>for Environmental Review</h1>
-    </div>
-    <div class="hero-top-right">
-      <p class="hero-sub">Every project built in the United States passes through environmental review. It's the invisible system shaping the physical world around us, and Envisor brings it into the modern era.</p>
-      <div class="hero-cta-row">
-        <a href="/contact" class="btn btn-lg btn-primary">Book Demo</a>
-        <a href="#platform" class="btn-text">See the platform
-          <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 7H11M11 7L7.5 3.5M11 7L7.5 10.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </a>
-      </div>
+<section class="hero">
+  <div class="hero-inner">
+    <p class="hero-eyebrow">AI-NATIVE ENVIRONMENTAL REVIEW &middot; CEQA &amp; NEPA</p>
+    <h1 class="hero-headline">Environmental review's<br>AI workforce.</h1>
+    <p class="hero-sub">Less drafting. Faster determinations. More projects reviewed with the same team. The leading AI platform built for the people who move environmental review forward.</p>
+    <div class="hero-cta-row">
+      <a href="/contact" class="btn btn-lg btn-primary">Book a Demo</a>
     </div>
   </div>
-  <div class="hero-shot-band">
-    <div class="hero-shot-frame">
-      <div class="hero-shot-crop">
-        <img src="product-shots/hero-dashboard-framed.png" alt="Envisor project dashboard showing review workflow progress, open comments, and project health">
-      </div>
+  <div class="hero-logos">
+    <span class="hero-logos-label">Trusted by teams at</span>
+    <div class="hero-logos-row">
+      <img src="logos/stantec.png" alt="Stantec" loading="lazy">
+      <img src="logos/placeworks.png" alt="PlaceWorks" loading="lazy">
+      <img class="logo-lg" src="logos/esa.png" alt="ESA — Environmental Science Associates" loading="lazy">
+      <img class="logo-lg" src="logos/Ascent_Logo_FullColor.png.png" alt="Ascent Environmental" loading="lazy">
+      <img src="logos/rincon.png" alt="Rincon Consultants" loading="lazy">
+      <img class="logo-lg" src="logos/Logo-ICF.png" alt="ICF" loading="lazy">
+    </div>
+  </div>
+</section>
+
+<section class="why">
+  <div class="why-inner">
+    <div class="why-card reveal">
+      <span class="why-num">2.1&times;</span>
+      <span class="why-label">Faster determinations</span>
+      <p>Preliminary review through public comment response, compressed into weeks, not quarters.</p>
+    </div>
+    <div class="why-card reveal">
+      <span class="why-num">50%</span>
+      <span class="why-label">Lower review cost</span>
+      <p>Billable hours reduced across the review cycle without cutting corners on the record.</p>
+    </div>
+    <div class="why-card reveal">
+      <span class="why-num">100%</span>
+      <span class="why-label">Cited and defensible</span>
+      <p>Every determination traces back to its source — evidence a reviewer can actually check.</p>
     </div>
   </div>
 </section>
@@ -84,59 +104,21 @@
     <span class="announce-badge">NEW</span>
     <h2>Introducing MIRA</h2>
     <p>The Mapping Intake &amp; Review Assistant. Give it a project description and an APN, and MIRA identifies concerns, likely petitioners, and mitigation strategies, then carries the project through to a review-ready Initial Study.</p>
-    <a href="/contact" class="btn btn-lg btn-light">Book Demo</a>
-  </div>
-</section>
-
-<section class="logowall">
-  <h3 class="reveal">Environmental teams building on Envisor</h3>
-  <div class="logowall-grid">
-    <div class="logo-cell reveal"><img src="logos/placeworks.png" alt="PlaceWorks" loading="lazy"></div>
-    <div class="logo-cell reveal"><img src="logos/epd.png" alt="EPD Solutions" loading="lazy"></div>
-    <div class="logo-cell reveal"><img class="logo-lg" src="logos/Ascent_Logo_FullColor.png.png" alt="Ascent Environmental" loading="lazy"></div>
-    <div class="logo-cell reveal"><img class="logo-lg" src="logos/esa.png" alt="ESA — Environmental Science Associates" loading="lazy"></div>
-    <div class="logo-cell reveal"><img src="logos/rincon.png" alt="Rincon Consultants" loading="lazy"></div>
-    <div class="logo-cell reveal"><img class="logo-lg" src="logos/Logo-ICF.png" alt="ICF" loading="lazy"></div>
-    <div class="logo-cell reveal"><img src="logos/stantec.png" alt="Stantec" loading="lazy"></div>
-    <div class="logo-cell reveal"><img src="logos/Parsons_Corporation_logo.png" alt="Parsons" loading="lazy"></div>
-    <div class="logo-cell reveal"><img src="logos/pcwa.png" alt="Placer County Water Agency" loading="lazy"></div>
-    <div class="logo-cell reveal"><img class="logo-lg" src="logos/UC_Berkeley_Cal_logo.png" alt="UC Berkeley" loading="lazy"></div>
-  </div>
-</section>
-
-<section class="bento">
-  <div class="sec-head reveal">
-    <span class="eyebrow">Who it&rsquo;s for</span>
-    <h2>Built for the people who deliver the work</h2>
-    <p>Consultants and agencies work from the same connected record, from first draft to final determination.</p>
-  </div>
-  <div class="bento-grid reveal">
-    <div class="bento-tile bento-tile--consultants">
-      <h3>For Environmental Consultants</h3>
-      <p>Run every project on one platform: research, evidence, drafting, and comment response in a single connected record.</p>
-      <a href="#" class="btn btn-outline-light">Explore for Consultants</a>
-      <div class="bento-shot"><img src="product-shots/cara-bracketed-comments.png" alt="CARA bracketed comments showing public comment letters mapped to agency issues by color-coded section"></div>
-    </div>
-    <div class="bento-tile bento-tile--agencies">
-      <h3>For Public Agencies</h3>
-      <p>Move projects through review with a defensible, traceable record, from applicability to determination.</p>
-      <a href="#" class="btn btn-outline-light">Explore for Agencies</a>
-      <div class="bento-shot"><img src="product-shots/mira-site-intelligence-soft.png" alt="Site Intelligence map showing mapped environmental constraints for a project site"></div>
-    </div>
+    <a href="/contact" class="btn btn-lg btn-primary">Book a Demo</a>
   </div>
 </section>
 
 <section class="pipeline" id="platform">
   <div class="sec-head reveal">
-    <span class="eyebrow">How it works</span>
+    <span class="eyebrow">Five steps, one connected system</span>
     <h2>From project description to defensible record.</h2>
-    <p>Move faster through complex environmental review without losing the context, traceability, or defensibility the work demands.</p>
+    <p>Every step below is a real product, not a mockup — and every step feeds the same underlying record.</p>
   </div>
   <div class="pipeline-inner reveal">
     <ol class="steps">
       <li class="step is-open" data-shot="product-shots/mira-site-intelligence.png" data-alt="MIRA site intelligence map showing mapped environmental constraints for a project site">
         <button class="step-trigger">
-          <span class="step-num">[01]</span>
+          <span class="step-num">01</span>
           <span class="step-head">
             <span class="step-title">Preliminary Review</span>
             <span class="step-product">MIRA</span>
@@ -151,7 +133,7 @@
       </li>
       <li class="step" data-shot="product-shots/mira-workflow-composite.png" data-alt="Initial Study Assistant assembling a review-ready environmental report from public and private data">
         <button class="step-trigger">
-          <span class="step-num">[02]</span>
+          <span class="step-num">02</span>
           <span class="step-head">
             <span class="step-title">Initial Study</span>
             <span class="step-product">Initial Study Assistant</span>
@@ -166,7 +148,7 @@
       </li>
       <li class="step" data-shot="product-shots/cara-review-queue.png" data-alt="CARA review queue showing drafted comment responses awaiting reviewer sign-off">
         <button class="step-trigger">
-          <span class="step-num">[03]</span>
+          <span class="step-num">03</span>
           <span class="step-head">
             <span class="step-title">Public Comments</span>
             <span class="step-product">CARA</span>
@@ -181,7 +163,7 @@
       </li>
       <li class="step" data-shot="product-shots/mira-hero-dashboard.png" data-alt="Project dashboard tracking mitigation measures and administrative record after approval">
         <button class="step-trigger">
-          <span class="step-num">[04]</span>
+          <span class="step-num">04</span>
           <span class="step-head">
             <span class="step-title">Project Implementation</span>
             <span class="step-product">Administrative Record</span>
@@ -224,28 +206,28 @@
   </div>
 </section>
 
-<section class="impact">
-  <div class="impact-inner">
-    <div class="sec-head reveal">
-      <span class="eyebrow">Impact</span>
-      <h2>Environmental review in half the time.</h2>
+<section class="bento" id="bento">
+  <div class="sec-head reveal">
+    <span class="eyebrow">Who it&rsquo;s for</span>
+    <h2>Built for the people who deliver the work</h2>
+    <p>Consultants and agencies work from the same connected record, from first draft to final determination.</p>
+  </div>
+  <div class="bento-grid reveal">
+    <div class="bento-tile">
+      <h3>Environmental Consultants</h3>
+      <p>Run every project on one platform: research, evidence, drafting, and comment response in a single connected record.</p>
+      <a href="#" class="btn-text">Learn more
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 7H11M11 7L7.5 3.5M11 7L7.5 10.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+      <div class="bento-shot"><img src="product-shots/cara-bracketed-comments.png" alt="CARA bracketed comments showing public comment letters mapped to agency issues by color-coded section"></div>
     </div>
-    <div class="impact-grid reveal">
-      <div class="impact-stat">
-        <span class="impact-eyebrow">Review Timeline</span>
-        <span class="impact-num">6–12 mo. &rarr; 3–6 mo.</span>
-        <p class="impact-desc">A typical EIR or IS process, compressed.</p>
-      </div>
-      <div class="impact-stat">
-        <span class="impact-eyebrow">Bid Price</span>
-        <span class="impact-num">Cut in half</span>
-        <p class="impact-desc">Billable hours reduced across the review cycle.</p>
-      </div>
-      <div class="impact-stat">
-        <span class="impact-eyebrow">Defensibility</span>
-        <span class="impact-num">Every claim cited</span>
-        <p class="impact-desc">Surface evidence invisible to the human eye.</p>
-      </div>
+    <div class="bento-tile">
+      <h3>Public Agencies</h3>
+      <p>Move projects through review with a defensible, traceable record, from applicability to determination.</p>
+      <a href="#" class="btn-text">Learn more
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 7H11M11 7L7.5 3.5M11 7L7.5 10.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+      <div class="bento-shot"><img src="product-shots/mira-site-intelligence-soft.png" alt="Site Intelligence map showing mapped environmental constraints for a project site"></div>
     </div>
   </div>
 </section>
@@ -253,21 +235,21 @@
 <section class="testimonials">
   <div class="testimonials-inner">
     <div class="sec-head reveal">
-      <span class="eyebrow">Testimonials</span>
+      <span class="eyebrow">What review teams say</span>
       <h2>Trusted by leading consulting firms and public agencies</h2>
     </div>
-    <div class="testimonial-list reveal">
-      <blockquote class="testimonial">
+    <div class="testimonial-grid reveal">
+      <blockquote class="testimonial-card">
         <p>&ldquo;I actually think the CARA responses are better than what a respected firm prepared.&rdquo;</p>
-        <cite><span class="t-role">Principal Planner</span><span class="t-org">Stantec</span></cite>
+        <cite><span class="t-org">Stantec</span><span class="t-role">Principal Planner</span></cite>
       </blockquote>
-      <blockquote class="testimonial">
+      <blockquote class="testimonial-card">
         <p>&ldquo;This technology can easily reduce the time responding to comments by 70%.&rdquo;</p>
-        <cite><span class="t-role">Principal Planner</span><span class="t-org">EPD Solutions</span></cite>
+        <cite><span class="t-org">EPD Solutions</span><span class="t-role">Principal Planner</span></cite>
       </blockquote>
-      <blockquote class="testimonial">
+      <blockquote class="testimonial-card">
         <p>&ldquo;Firms without these tools will be uncompetitive within 10 years.&rdquo;</p>
-        <cite><span class="t-role">Brian Harrington</span><span class="t-org">UCOP Planning</span></cite>
+        <cite><span class="t-org">UCOP Planning</span><span class="t-role">Brian Harrington</span></cite>
       </blockquote>
     </div>
   </div>
@@ -277,7 +259,7 @@
   <div class="final-cta-card reveal">
     <span class="final-cta-eyebrow">Ready when you are</span>
     <h2>Move faster through complex environmental review without losing the record.</h2>
-    <a href="/contact" class="btn btn-light">Book Demo</a>
+    <a href="/contact" class="btn btn-lg btn-primary">Book a Demo</a>
   </div>
 </section>
 
@@ -286,23 +268,38 @@
     <div class="footer-brand">
       <img class="footer-logo" src="envisor-logo.svg" alt="Envisor">
       <p>The operating system for environmental review.</p>
-      <a href="/contact" class="btn btn-outline-light">Book Demo</a>
+      <div class="footer-social">
+        <a href="#" aria-label="LinkedIn">in</a>
+        <a href="#" aria-label="X (Twitter)">X</a>
+      </div>
     </div>
     <div class="footer-col">
-      <h5>Solutions</h5>
-      <a href="#platform">CARA</a>
+      <h5>Product</h5>
       <a href="#platform">MIRA</a>
+      <a href="#platform">CARA</a>
       <a href="#platform">CEQA Search</a>
       <a href="#platform">Document Remediation</a>
     </div>
     <div class="footer-col">
+      <h5>Solutions</h5>
+      <a href="#bento">Environmental Consultants</a>
+      <a href="#bento">Public Agencies</a>
+    </div>
+    <div class="footer-col">
+      <h5>Resources</h5>
+      <a href="#">CEQA Search</a>
+      <a href="#">Case Studies</a>
+    </div>
+    <div class="footer-col">
       <h5>Company</h5>
-      <a href="#about">About</a>
+      <a href="#about">About Us</a>
       <a href="#contact">Contact</a>
-      <a href="#">Security</a>
     </div>
   </div>
-  <div class="footer-bottom">&copy; 2026 Envisor AI. All rights reserved.</div>
+  <div class="footer-bottom">
+    <span>&copy; 2026 Envisor AI. All rights reserved.</span>
+    <span class="footer-legal"><a href="#">Terms</a><a href="#">Privacy</a></span>
+  </div>
 </footer>
 
 <script>
@@ -320,10 +317,6 @@
     toggle.setAttribute('aria-expanded', String(open));
   });
 
-  /* Pipeline stepper (permitflow.com pattern): the numbered list and the stage
-     image are one component — selecting a step always leaves exactly one step
-     open and swaps the paired product shot. No "all closed" state: an empty
-     stage would leave a large hole in the right column. */
   var steps = document.querySelectorAll('.step');
   var stage = document.getElementById('pipeline-shot');
   steps.forEach(function (step) {

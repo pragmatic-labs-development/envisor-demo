@@ -1,38 +1,41 @@
 /* ===================================================================
-   Envisor — Marketing Website v4 "Blended Inspirations"
-   Design register: blend of Legora (cinematic photography energy,
-   forest-green accent, accordion feature list), Hebbia (dark
-   asymmetric bento product grid, tracked serif impact statements),
-   and Sierra (rounded pill buttons/nav, generous logo wall, gradient
-   bento tiles) — reskinned onto v3's cream/ink base and real Envisor
-   content. See HANDOFF.md for full sourcing and rationale.
+   Envisor — Marketing Website v9 "Hebbia"
+   Full redesign (2026-08-23), not a palette swap on v4: near-monochrome
+   register modeled on hebbia.com's real identity — white/near-black,
+   sharp 8px radius sitewide (not pill), dual-tier nav, a full-bleed
+   dark hero (no video asset available, so a bold ink band stands in for
+   Hebbia's real video hero), full-bleed section hairlines, and the
+   positive-tracking/compressed-leading display serif sampled from
+   hebbia.com's own live styles in an earlier session. See HANDOFF.md.
    =================================================================== */
 
 :root {
-  --bg: #fafaf9;
-  --ink: #0f0e0d;
-  --muted: #5c5952;
-  --muted-2: #83807a;
-  --border: #e4e1da;
-  --card: #ffffff;
-  --accent: #F2B400;        /* brand yellow — fills: buttons, active states, badges */
-  --accent-2: #B8860B;      /* deep amber — hover-darken of fills, and text-on-light contexts where bright yellow reads too low-contrast */
-  --accent-tint: #FBEEC7;   /* pale yellow fill for tags/badges */
-  --dark-1: #0f0e0d;
-  --dark-2: #201f1e;        /* neutral dark gray, for bento/lane cards */
-  --dark-3: #0f0e0d;
+  --bg: #ffffff;
+  --ink: #0a0a0a;
+  --muted: #5c5c5c;
+  --muted-2: #86867f;
+  --border: #e6e6e2;
+  --card: #f6f6f4;
+  /* Hebbia's real register is near-colorless — one muted signal color
+     stands in for what elsewhere on this site is a bright brand accent.
+     Used sparingly: the "NEW" badge, link hover, active nav state. */
+  --accent: #0a0a0a;        /* CTAs are ink-fill, not a color — see .btn-primary below */
+  --accent-2: #0E7C66;      /* the one signal color: muted institutional teal */
+  --accent-tint: #E9F2F0;   /* pale tint of the signal color, for tags/badges */
+  --dark-1: #0a0a0a;
+  --dark-2: #201f1e;
+  --dark-3: #0a0a0a;
 
-  /* radius scale — every radius used anywhere on the page routes through one
-     of these five, named, so the vocabulary is auditable in one place */
-  --radius-sm: 999px;       /* pill buttons/tags — Sierra/Legora signature */
-  --radius-md: 14px;        /* small cards: nav dropdown, logo cells */
-  --radius-lg: 22px;        /* standard cards: announce, impact, testimonials */
-  --radius-xl: 28px;        /* accordion capsules — Legora's own shape */
-  --radius-sharp: 8px;      /* the one deliberate exception: Hebbia bento tiles */
-  --radius-sharp-sm: 4px;   /* sharp scale's small step — CTAs *inside* the Hebbia bento
-                               tiles, sampled from hebbia.com's own 4px buttons. A pill
-                               button inside an 8px-radius tile was cancelling the exact
-                               contrast that section exists to create. Used nowhere else. */
+  /* radius scale — Hebbia's real signature is sharp corners everywhere, not
+     the pill-button vocabulary the rest of this repo's versions use. Every
+     radius routes through one of these, so the "sharp, precise, institutional"
+     read is enforced structurally, not just applied to one bento grid. */
+  --radius-sm: 8px;         /* buttons/tags — was 999px (pill) in every other version */
+  --radius-md: 10px;        /* small cards: nav dropdown, logo cells */
+  --radius-lg: 14px;        /* standard cards: announce, impact, testimonials */
+  --radius-xl: 14px;        /* accordion rows — no longer Legora's rounded capsule */
+  --radius-sharp: 8px;      /* bento tiles — same value as the base scale now, on purpose */
+  --radius-sharp-sm: 4px;   /* CTAs *inside* bento tiles — sampled from hebbia.com's own 4px buttons */
 
   /* ink washes — resting/active fill pair for the Legora accordion capsules.
      Deliberately neutral, not a hue: Legora separates a closed row from an open
@@ -197,7 +200,7 @@ p { margin: 0; }
 }
 /* No lift-on-hover: Harvey's buttons change color and nothing else. A 1px
    translate on every button on the page read as busy rather than responsive. */
-.btn-primary { background: var(--accent); color: var(--ink); }
+.btn-primary { background: var(--accent); color: var(--bg); }
 .btn-primary:hover { background: var(--accent-2); }
 /* Ink-filled pill for the nav CTA. The nav and the hero both used to be brand
    yellow, putting two identical saturated "Book Demo" pills in the first
@@ -216,39 +219,28 @@ p { margin: 0; }
 .btn-text svg { transition: transform 0.15s ease; }
 .btn-text:hover svg { transform: translateX(3px); }
 
-/* ---------- Top announcement strip (Legora) ----------
-   legora.com opens on a slim full-bleed strip above the nav carrying one line
-   of news plus a single forward link — the page's first horizontal edge, and
-   part of why its nav reads as anchored rather than floating on the
-   background. This page had no equivalent: the nav sat straight on --bg with
-   nothing establishing the top of the page. Deliberately NOT sticky — Legora
-   pins both bar and nav, permanently taxing viewport height; letting the
-   strip scroll away keeps this page's restraint while still landing the
-   structural move. */
-.topbar { background: var(--ink); }
-.topbar-inner {
+/* ---------- Utility bar (Hebbia dual-tier nav, upper tier) ----------
+   Hebbia runs two stacked nav rows rather than one: a slim utility strip
+   (audience-segment links, sign-in) sits above the primary bar (logo,
+   Solutions/Company, Request Demo). Replaces the single-row nav every other
+   version on this page uses — see .nav below for the second tier. */
+.util-bar { background: var(--ink); }
+.util-bar-inner {
   max-width: var(--max);
   margin: 0 auto;
   padding: 0 32px;
-  height: 40px;
+  height: 34px;
   display: flex;
   align-items: center;
-  justify-content: center;
-  gap: 16px;
-  font-size: 13px;
-  color: rgba(250, 250, 249, 0.72);
+  gap: 20px;
+  font-size: 12.5px;
+  color: rgba(255,255,255,0.6);
 }
-.topbar-inner a {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  color: var(--accent);
-  font-weight: 500;
-}
-.topbar-inner a svg { transition: transform 0.15s ease; }
-.topbar-inner a:hover svg { transform: translateX(3px); }
+.util-bar-inner a { color: rgba(255,255,255,0.6); }
+.util-bar-inner a:hover { color: #fff; }
+.util-bar-spacer { flex: 1; }
 @media (max-width: 640px) {
-  .topbar-inner { height: auto; padding: 10px 20px; gap: 10px; font-size: 12.5px; flex-wrap: wrap; }
+  .util-bar-inner { height: auto; padding: 8px 20px; flex-wrap: wrap; gap: 10px 16px; }
 }
 
 /* ---------- Nav ---------- */
@@ -341,7 +333,15 @@ p { margin: 0; }
 .mobile-nav a { padding: 13px 0; border-bottom: 1px solid var(--border); font-size: 15px; }
 .mobile-nav .btn { margin-top: 18px; align-self: flex-start; }
 
-/* ---------- Hero — Harvey's split text layout + framed product shot bleeding into a Legora-mood band ---------- */
+/* ---------- Hero — full-bleed ink band ----------
+   hebbia.com's real hero runs a full-width video background; no video asset
+   exists here, so a bold near-black band stands in — the page's one loud
+   dark moment, up front, rather than reusing the light contained-card hero
+   every other version on this page has. */
+.hero-band--ink { background: var(--ink); }
+.hero-band--ink .hero-headline { color: var(--bg); }
+.hero-sub--light { color: rgba(255,255,255,0.68); }
+.btn-text--light { color: rgba(255,255,255,0.85); }
 .hero-band { position: relative; background: var(--bg); }
 .hero-top {
   display: grid;
@@ -846,9 +846,24 @@ p { margin: 0; }
 .footer-brand p { font-size: 14px; color: rgba(250,250,249,0.55); max-width: 26ch; line-height: 1.5; margin-bottom: 24px; }
 .footer-col h5 { font-size: 12px; text-transform: uppercase; letter-spacing: 0.08em; color: rgba(250,250,249,0.4); margin-bottom: 14px; }
 .footer-col a { display: block; font-size: 14px; padding: 6px 0; color: var(--bg); }
-.footer-col a:hover { color: var(--accent); }
+.footer-col a:hover { color: var(--accent-2); }
 .footer-bottom { max-width: var(--max); margin: 48px auto 0; padding-top: 24px; border-top: 1px solid rgba(250,250,249,0.12); font-size: 13px; color: rgba(250,250,249,0.4); }
 @media (max-width: 860px) { .footer-inner { grid-template-columns: 1fr 1fr; } }
+
+/* ---------- Footer (Hebbia): 5 link columns + brand ----------
+   hebbia.com's own footer runs Product/Solutions/Company/Policies/Follow —
+   denser than this repo's other footers, matching Hebbia's information-heavy
+   register. */
+.footer-hebbia .footer-inner {
+  grid-template-columns: minmax(220px, 1.4fr) repeat(4, 0.85fr) 0.7fr;
+  gap: 28px;
+}
+@media (max-width: 980px) {
+  .footer-hebbia .footer-inner { grid-template-columns: 1fr 1fr 1fr; }
+}
+@media (max-width: 640px) {
+  .footer-hebbia .footer-inner { grid-template-columns: 1fr 1fr; }
+}
 
 /* ---------- Scroll reveal ---------- */
 .reveal { opacity: 0; transform: translateY(16px); transition: opacity 0.6s ease, transform 0.6s ease; }

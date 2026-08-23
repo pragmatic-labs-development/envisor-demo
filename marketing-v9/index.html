@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Envisor | The Operating System for Environmental Review</title>
+<title>Envisor | The System of Record for Environmental Review</title>
 <meta name="description" content="Envisor is a purpose-built AI platform for environmental review. Research, draft, respond to comments, and defend environmental documents in one connected system.">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -13,12 +13,12 @@
 </head>
 <body>
 
-<div class="topbar">
-  <div class="topbar-inner">
-    <span>New: MIRA, the Mapping Intake &amp; Review Assistant</span>
-    <a href="#mira">Learn more
-      <svg width="12" height="12" viewBox="0 0 14 14" fill="none"><path d="M3 7H11M11 7L7.5 3.5M11 7L7.5 10.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-    </a>
+<div class="util-bar">
+  <div class="util-bar-inner">
+    <a href="#bento">For Consultants</a>
+    <a href="#bento">For Agencies</a>
+    <span class="util-bar-spacer"></span>
+    <a href="/contact">Sign In</a>
   </div>
 </div>
 <header class="nav" id="site-nav">
@@ -36,11 +36,18 @@
           <a href="#platform"><span class="dd-title">Document Remediation</span><span class="dd-desc">WCAG 2.2 conversion</span></a>
         </div>
       </li>
-      <li class="nav-item"><a href="#about">About</a></li>
-      <li class="nav-item"><a href="#contact">Contact</a></li>
+      <li class="nav-item" tabindex="0">
+        <span>Company
+          <svg width="10" height="10" viewBox="0 0 12 12" fill="none"><path d="M3 4.5L6 7.5L9 4.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </span>
+        <div class="nav-dropdown">
+          <a href="#about"><span class="dd-title">About</span><span class="dd-desc">Why we built Envisor</span></a>
+          <a href="#contact"><span class="dd-title">Contact</span><span class="dd-desc">Talk to the team</span></a>
+        </div>
+      </li>
     </ul>
     <div class="nav-actions">
-      <a href="/contact" class="btn btn-ink">Book Demo</a>
+      <a href="/contact" class="btn btn-ink">Request Demo</a>
     </div>
     <button class="nav-mobile-toggle" id="menu-toggle" aria-label="Open menu" aria-expanded="false">
       <span></span><span></span><span></span>
@@ -48,23 +55,23 @@
   </div>
   <div class="mobile-nav" id="mobile-nav">
     <a href="#platform">Solutions</a>
-    <a href="#about">About</a>
+    <a href="#about">Company</a>
     <a href="#contact">Contact</a>
-    <a href="/contact" class="btn btn-ink">Book Demo</a>
+    <a href="/contact" class="btn btn-ink">Request Demo</a>
   </div>
 </header>
 
-<section class="hero-band">
+<section class="hero-band hero-band--ink">
   <div class="hero-top">
     <div class="hero-top-left">
-      <p class="eyebrow">AI-NATIVE ENVIRONMENTAL REVIEW &middot; CEQA &amp; NEPA</p>
-      <h1 class="hero-headline">The Operating System<br>for Environmental Review</h1>
+      <p class="eyebrow eyebrow--light">AI-NATIVE ENVIRONMENTAL REVIEW &middot; CEQA &amp; NEPA</p>
+      <h1 class="hero-headline">The system of record<br>for environmental review.</h1>
     </div>
     <div class="hero-top-right">
-      <p class="hero-sub">Every project built in the United States passes through environmental review. It's the invisible system shaping the physical world around us, and Envisor brings it into the modern era.</p>
+      <p class="hero-sub hero-sub--light">Every project fact, citation, and revision in one connected record — built for the rigor environmental review demands, not around it.</p>
       <div class="hero-cta-row">
-        <a href="/contact" class="btn btn-lg btn-primary">Book Demo</a>
-        <a href="#platform" class="btn-text">See the platform
+        <a href="/contact" class="btn btn-lg btn-light">Request Demo</a>
+        <a href="#platform" class="btn-text btn-text--light">See the platform
           <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 7H11M11 7L7.5 3.5M11 7L7.5 10.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </a>
       </div>
@@ -282,25 +289,40 @@
   </div>
 </section>
 
-<footer class="footer" id="contact">
+<footer class="footer footer-hebbia" id="contact">
   <div class="footer-inner">
     <div class="footer-brand">
       <img class="footer-logo" src="envisor-logo.svg" alt="Envisor">
-      <p>The operating system for environmental review.</p>
-      <a href="/contact" class="btn btn-outline-light">Book Demo</a>
+      <p>The system of record for environmental review.</p>
+      <a href="/contact" class="btn btn-outline-light">Request Demo</a>
+    </div>
+    <div class="footer-col">
+      <h5>Product</h5>
+      <a href="#platform">MIRA</a>
+      <a href="#platform">CARA</a>
+      <a href="#platform">CEQA Search</a>
+      <a href="#platform">Document Remediation</a>
     </div>
     <div class="footer-col">
       <h5>Solutions</h5>
-      <a href="#platform">CARA</a>
-      <a href="#platform">MIRA</a>
-      <a href="#platform">CEQA Search</a>
-      <a href="#platform">Document Remediation</a>
+      <a href="#bento">For Consultants</a>
+      <a href="#bento">For Public Agencies</a>
     </div>
     <div class="footer-col">
       <h5>Company</h5>
       <a href="#about">About</a>
       <a href="#contact">Contact</a>
+    </div>
+    <div class="footer-col">
+      <h5>Policies</h5>
+      <a href="#">Privacy</a>
       <a href="#">Security</a>
+      <a href="#">Terms</a>
+    </div>
+    <div class="footer-col footer-follow">
+      <h5>Follow Us</h5>
+      <a href="#">LinkedIn</a>
+      <a href="#">X</a>
     </div>
   </div>
   <div class="footer-bottom">&copy; 2026 Envisor AI. All rights reserved.</div>
