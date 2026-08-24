@@ -67,6 +67,32 @@ p { margin: 0; color: var(--muted); line-height: 1.6; }
   .hero-inner { grid-template-columns: 1fr; }
 }
 
+/* ---------- Signals (Pano AI audit v2) ----------
+   Pano AI's core register is real-time detection/alert awareness — not
+   represented anywhere on this page yet, which had settled into a fairly
+   generic feature-card/workflow/testimonial rhythm. This section borrows
+   that "live signal" identity using real strings already shipped in
+   Envisor's own product screenshots (the alert banner, review-queue count,
+   and project-health status visible in hero-dashboard-framed.png) rather
+   than inventing new claims — just surfaced as their own moment instead of
+   buried inside a screenshot. */
+.signals { padding: var(--space-tight) 32px; background: var(--card); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+.signals-inner { max-width: var(--max); margin: 0 auto; display: grid; grid-template-columns: 0.85fr 1.15fr; gap: 56px; align-items: center; }
+.signals-lead h2 { font-size: clamp(24px, 2.8vw, 32px); margin: 14px 0 12px; line-height: 1.12; }
+.signals-lead p { font-size: 15.5px; line-height: 1.55; max-width: 36ch; }
+.signals-grid { display: flex; flex-direction: column; gap: 14px; }
+.signal-card { display: flex; align-items: flex-start; gap: 14px; padding: 18px 20px; border-radius: var(--radius-md); border: 1px solid var(--border); background: var(--bg); }
+.signal-icon { flex-shrink: 0; display: inline-flex; align-items: center; justify-content: center; width: 36px; height: 36px; border-radius: 10px; }
+.signal-card--orange .signal-icon { background: var(--orange-tint); color: var(--orange); }
+.signal-card--teal .signal-icon { background: var(--teal-tint); color: var(--teal-dark); }
+.signal-card--ink .signal-icon { background: var(--border); color: var(--ink); }
+.signal-tag { display: block; font-size: 11px; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; color: var(--muted-2); margin-bottom: 4px; }
+.signal-text { font-size: 15.5px; font-weight: 600; color: var(--ink); margin: 0 0 4px; }
+.signal-meta { display: block; font-size: 13px; color: var(--muted); }
+@media (max-width: 900px) {
+  .signals-inner { grid-template-columns: 1fr; gap: 32px; }
+}
+
 /* ---------- Feature cards ---------- */
 .feature-cards { padding: var(--space-tight) 32px; max-width: var(--max); margin: 0 auto; }
 .sec-head { text-align: center; max-width: 560px; margin: 0 auto 48px; }
@@ -88,6 +114,32 @@ p { margin: 0; color: var(--muted); line-height: 1.6; }
 .workflow-steps p { font-size: 14px; }
 @media (max-width: 900px) { .workflow-steps { grid-template-columns: 1fr 1fr; } }
 @media (max-width: 600px) { .workflow-steps { grid-template-columns: 1fr; } }
+
+/* ---------- Audience split (Pano AI audit v2, section 2) ----------
+   Pano AI's real nav segments its audience explicitly (Industries: Utilities,
+   Fire Professionals, Landowners) and content follows that split. This page's
+   nav already has a "Who It's For" dropdown (Consultants / Public Agencies)
+   and the trust section below already splits logos into those two tiers —
+   but nothing on the page ever explains what's actually different about
+   each audience's experience before that logo split shows up. Two real
+   product screenshots that weren't used anywhere else on this page
+   (cara-review-queue.png, mira-site-intelligence.png) anchor each side, with
+   copy reused verbatim from the same Consultants/Agencies split already
+   established elsewhere in this project's content bank (v4/v9's bento
+   grid) — not new claims, just given a section here instead of an unused
+   dropdown link. */
+.audience { padding: var(--space-tight) 32px; max-width: var(--max); margin: 0 auto; }
+.audience-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; }
+.audience-card { border: 1px solid var(--border); border-radius: var(--radius-lg); overflow: hidden; background: var(--card); display: flex; flex-direction: column; transition: box-shadow 0.2s ease, transform 0.2s ease; }
+.audience-card:hover { transform: translateY(-3px); box-shadow: 0 20px 40px rgba(36,34,32,0.08); }
+.audience-media { aspect-ratio: 16/10; overflow: hidden; border-bottom: 1px solid var(--border); }
+.audience-media img { width: 100%; height: 100%; object-fit: cover; object-position: top; }
+.audience-body { padding: 28px 26px 30px; }
+.audience-icon { display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; border-radius: 12px; background: var(--orange-tint); color: var(--orange); margin-bottom: 16px; }
+.audience-card:nth-child(2) .audience-icon { background: var(--teal-tint); color: var(--teal-dark); }
+.audience-body h3 { font-size: 21px; margin-bottom: 10px; }
+.audience-body p { font-size: 15px; line-height: 1.55; margin-bottom: 18px; }
+@media (max-width: 900px) { .audience-grid { grid-template-columns: 1fr; } }
 
 /* ---------- Trust (tiered logo grid) ---------- */
 .trust { padding: var(--space-tight) 32px; background: var(--card); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }

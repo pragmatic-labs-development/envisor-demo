@@ -128,30 +128,44 @@ p { margin: 0; }
 .bento-shot img { width: 100%; height: 240px; object-fit: cover; object-position: top; }
 @media (max-width: 860px) { .bento-grid { grid-template-columns: 1fr; } }
 
-/* ---------- Platform / accordion ---------- */
-.platform { padding: 0 32px var(--space-lg); }
-.platform-inner { max-width: var(--max); margin: 0 auto; display: grid; grid-template-columns: 400px 1fr; gap: 64px; }
-.platform-intro { position: sticky; top: 110px; align-self: start; text-align: left; }
-.platform-intro h2 { font-size: clamp(26px, 3.2vw, 34px); font-weight: 800; margin: 14px 0 12px; }
-.platform-intro p { font-size: 15.5px; color: var(--muted); line-height: 1.55; }
-.accordion { display: flex; flex-direction: column; gap: 10px; }
-.accordion-row { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius-md); overflow: hidden; }
-.accordion-trigger { width: 100%; display: flex; align-items: center; justify-content: space-between; padding: 20px 24px; background: none; border: none; cursor: pointer; font-family: var(--sans); text-align: left; }
-.accordion-title { font-size: 16px; font-weight: 700; }
-.accordion-toggle { width: 20px; height: 20px; border-radius: 50%; border: 1.5px solid var(--muted-2); position: relative; flex-shrink: 0; }
-.accordion-toggle::before, .accordion-toggle::after { content: ''; position: absolute; background: var(--ink); top: 50%; left: 50%; transform: translate(-50%,-50%); }
-.accordion-toggle::before { width: 8px; height: 1.5px; }
-.accordion-toggle::after { width: 1.5px; height: 8px; transition: transform 0.2s ease; }
-.accordion-row.is-open .accordion-toggle::after { transform: translate(-50%,-50%) rotate(90deg) scaleY(0); }
-.accordion-panel { display: grid; grid-template-rows: 0fr; transition: grid-template-rows 0.28s ease; }
-.accordion-row.is-open .accordion-panel { grid-template-rows: 1fr; }
-.accordion-panel-inner { overflow: hidden; padding: 0 24px; }
-.accordion-row.is-open .accordion-panel-inner { padding: 0 24px 24px; }
-.accordion-kicker { display: block; font-size: 11.5px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--accent); margin-bottom: 8px; }
-.accordion-panel p { font-size: 14.5px; color: var(--muted); line-height: 1.6; }
-.kb-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 14px; }
-.kb-tags span { font-size: 11.5px; background: var(--bg-2); padding: 4px 10px; border-radius: var(--radius-pill); color: var(--muted); }
-@media (max-width: 860px) { .platform-inner { grid-template-columns: 1fr; } .platform-intro { position: static; } }
+/* ---------- Product features (Sierra audit v2) ----------
+   Sierra's real signature here isn't a collapsed accordion — it's large
+   alternating product rows with real imagery (their Ghostwriter/Insights/
+   Horizon pattern: rotating illustrations paired with icon+headline+
+   description). Rebuilt with Envisor's own three screenshot-backed
+   modules as full-bleed rows, plus a compact 3-up strip for the three
+   capabilities that don't have a dedicated screenshot (Knowledge Base,
+   CEQA Search, Document Remediation) — same copy as the old accordion,
+   just given real visual weight instead of being collapsed by default. */
+.features-sierra { padding: 0 32px var(--space-lg); }
+.features-sierra .sec-head { text-align: center; }
+.feature-row {
+  max-width: var(--max);
+  margin: 0 auto 64px;
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 56px;
+  align-items: center;
+}
+.feature-row--reverse { direction: rtl; }
+.feature-row--reverse > * { direction: ltr; }
+.feature-row-media { border-radius: var(--radius-lg); overflow: hidden; border: 1px solid var(--border); box-shadow: 0 24px 60px rgba(23,21,18,0.07); }
+.feature-row-media img { width: 100%; height: 340px; object-fit: cover; object-position: top; }
+.feature-tag { display: inline-block; font-size: 11.5px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--accent); margin-bottom: 10px; }
+.feature-row-text h3 { font-size: clamp(22px, 2.6vw, 28px); font-weight: 800; margin-bottom: 12px; }
+.feature-row-text p { font-size: 16px; color: var(--muted); line-height: 1.6; max-width: 40ch; }
+.feature-mini-grid { max-width: var(--max); margin: 24px auto 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.feature-mini-card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius-md); padding: 26px 24px; }
+.feature-mini-icon { display: inline-flex; align-items: center; justify-content: center; width: 38px; height: 38px; border-radius: var(--radius-sm); background: var(--accent-tint); color: var(--accent); margin-bottom: 14px; }
+.feature-mini-card h4 { font-size: 15.5px; font-weight: 700; margin-bottom: 8px; }
+.feature-mini-card p { font-size: 13.5px; color: var(--muted); line-height: 1.55; }
+.kb-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; }
+.kb-tags span { font-size: 11px; background: var(--bg-2); padding: 4px 9px; border-radius: var(--radius-pill); color: var(--muted); }
+@media (max-width: 860px) {
+  .feature-row, .feature-row--reverse { grid-template-columns: 1fr; direction: ltr; gap: 28px; }
+  .feature-row-media img { height: 240px; }
+  .feature-mini-grid { grid-template-columns: 1fr; }
+}
 
 /* ---------- Workflow ---------- */
 .workflow { padding: 0 32px var(--space-lg); }
@@ -185,6 +199,42 @@ p { margin: 0; }
 .t-org { font-size: 14.5px; font-weight: 700; }
 .t-role { font-size: 12.5px; color: var(--muted-2); }
 @media (max-width: 860px) { .testimonial-cards { grid-template-columns: 1fr; } }
+
+/* ---------- Customer spotlight (Sierra audit v2, second net-new section) ----------
+   Distinct from both the impact tiles (generic product-level stats, gradient
+   treatment) and the 3-up testimonial grid (three equal peer quotes) — this
+   pulls ONE real testimonial forward and gives it an outsized, asymmetric
+   big-number treatment as a closing proof point right before the final CTA.
+   The 70% figure isn't a new claim — it's the same number already sitting
+   inside EPD Solutions' existing testimonial text, just surfaced visually.
+   Deliberately plain-card (not another gradient) since green/blue/terracotta
+   gradients are already doing real work three times elsewhere on this page;
+   a fourth would read as repetition, not a genuine new visual idea. */
+.spotlight { padding: 0 32px var(--space-lg); }
+.spotlight-card {
+  max-width: var(--max);
+  margin: 0 auto;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 64px 56px;
+  display: grid;
+  grid-template-columns: 0.8fr 1.2fr;
+  gap: 56px;
+  align-items: center;
+}
+.spotlight-stat { border-right: 1px solid var(--border); padding-right: 56px; }
+.spotlight-num { display: block; font-family: var(--sans); font-weight: 800; font-size: clamp(56px, 7vw, 84px); line-height: 1; letter-spacing: -0.02em; color: var(--accent); }
+.spotlight-label { display: block; margin-top: 14px; font-size: 15px; font-weight: 600; color: var(--muted); max-width: 20ch; }
+.spotlight-mark { color: var(--accent); opacity: 0.35; margin-bottom: 14px; }
+.spotlight-quote p { font-family: var(--serif); font-style: italic; font-size: clamp(20px, 2.4vw, 26px); line-height: 1.4; color: var(--ink); margin-bottom: 26px; }
+.spotlight-attribution { display: flex; align-items: center; gap: 16px; }
+.spotlight-logo { height: 24px; width: auto; }
+.spotlight-attribution .t-role { font-size: 13.5px; color: var(--muted-2); }
+@media (max-width: 860px) {
+  .spotlight-card { grid-template-columns: 1fr; padding: 44px 32px; gap: 32px; }
+  .spotlight-stat { border-right: none; padding-right: 0; border-bottom: 1px solid var(--border); padding-bottom: 32px; }
+}
 
 /* ---------- Final CTA ---------- */
 .final-cta { padding: 0 32px var(--space-lg); }

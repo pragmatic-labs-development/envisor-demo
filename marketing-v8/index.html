@@ -107,6 +107,64 @@
   </div>
 </section>
 
+<section class="trust-stat">
+  <div class="trust-stat-card reveal">
+    <span class="eyebrow eyebrow--light">Built with the field</span>
+    <div class="trust-stat-number">10</div>
+    <p class="trust-stat-desc">Consultancies and public agencies — competitors on paper — already building their review record on the same connected system.</p>
+    <div class="trust-stat-logos">
+      <img src="logos/placeworks.png" alt="PlaceWorks" loading="lazy">
+      <img src="logos/epd.png" alt="EPD Solutions" loading="lazy">
+      <img src="logos/esa.png" alt="ESA — Environmental Science Associates" loading="lazy">
+      <img src="logos/stantec.png" alt="Stantec" loading="lazy">
+      <img src="logos/Logo-ICF.png" alt="ICF" loading="lazy">
+      <img src="logos/rincon.png" alt="Rincon Consultants" loading="lazy">
+    </div>
+  </div>
+</section>
+
+<section class="journey">
+  <div class="sec-head reveal">
+    <span class="eyebrow">One project, start to finish</span>
+    <h2>The same record, from intake to determination.</h2>
+    <p>No exports, no re-uploading between tools — every module below reads and writes to one project record.</p>
+  </div>
+  <div class="journey-track reveal">
+    <div class="journey-step">
+      <div class="journey-media"><img src="product-shots/mira-site-intelligence.png" alt="MIRA site intelligence map showing mapped environmental constraints for a project site" loading="lazy"></div>
+      <div class="journey-body">
+        <span class="journey-num">01</span>
+        <h3>Site Intelligence</h3>
+        <p>A project description and an APN are all MIRA needs to surface concerns, likely petitioners, and mitigation strategies.</p>
+      </div>
+    </div>
+    <div class="journey-step">
+      <div class="journey-media"><img src="product-shots/cara-bracketed-comments.png" alt="CARA bracketed comments showing public comment letters mapped to agency issues by color-coded section" loading="lazy"></div>
+      <div class="journey-body">
+        <span class="journey-num">02</span>
+        <h3>Public Comments</h3>
+        <p>CARA brackets, groups, and assigns responsible parties and timelines, then drafts defensible responses tied to the record.</p>
+      </div>
+    </div>
+    <div class="journey-step">
+      <div class="journey-media"><img src="product-shots/mira-hero-dashboard.png" alt="MIRA Decision Dashboard recommending an Initial Study pathway with blocking confidence and required next actions" loading="lazy"></div>
+      <div class="journey-body">
+        <span class="journey-num">03</span>
+        <h3>Initial Study</h3>
+        <p>Public and private data combine into a review-ready environmental report, with every recommendation traced to its source.</p>
+      </div>
+    </div>
+    <div class="journey-step">
+      <div class="journey-media"><img src="product-shots/hero-dashboard-framed.png" alt="Envisor project dashboard showing the review queue, project health, and the connected six-step workflow from intake to delivery" loading="lazy"></div>
+      <div class="journey-body">
+        <span class="journey-num">04</span>
+        <h3>Determination</h3>
+        <p>Approving agencies get the full administrative record, with mitigation measures monitored over the project's lifetime.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
 <section class="platform" id="platform">
   <div class="sec-head reveal">
     <span class="eyebrow">The platform</span>
@@ -346,7 +404,7 @@
         entry.target.classList.add('is-in');
         io.unobserve(entry.target);
       });
-    }, { rootMargin: '0px 0px -8% 0px', threshold: 0.08 });
+    }, { rootMargin: '0px 0px 20% 0px', threshold: 0.01 });
     revealables.forEach(function (el) {
       if (el.getBoundingClientRect().top < window.innerHeight) { el.classList.add('is-in'); }
       else { io.observe(el); }

@@ -17,8 +17,16 @@
   --border: #E4E1DA;
   --card: #ffffff;
   --accent: #005032;        /* verified real Legora green, sampled from legora.com's own CTA/announcement-bar */
-  --accent-2: #003620;      /* darker shade for hover states */
+  --accent-2: #003620;      /* darker shade for hover states, text-on-light */
   --accent-tint: rgba(0, 80, 50, 0.08);
+  /* This page's dark backgrounds (--ink, --bg-dark) used --accent directly for
+     foreground text/icons in several places — a holdover from v4's original
+     bright-yellow accent, which really did pop on near-black. #005032 is a
+     DARK green; on near-black it drops to roughly a 1.5:1 contrast ratio,
+     effectively invisible (found by actually scrolling the rendered page,
+     not by reading the CSS). --accent-bright is the same hue lifted to a
+     legible tone, used only where accent text/icons sit on a dark ground. */
+  --accent-bright: #4FBE8C;
   --dark-1: #12110E;
   --dark-2: #201f1e;
   --dark-3: #0A0B09;
@@ -480,6 +488,69 @@ p { margin: 0; }
   .bento-grid { grid-template-columns: 1fr; }
 }
 
+/* ---------- Trust stat (Legora audit v2, second net-new section) ----------
+   Distinct from the existing .impact band (same three review-timeline/
+   bid-price/defensibility stats, dark full-bleed, equal three-column grid)
+   — this uses a different real fact (the count of real organizations
+   already in the logo wall above, 10 — verified against the actual number
+   of .logo-cell entries in this file, not invented) in a single oversized-
+   numeral statement, Legora's own confident-headline register applied to a
+   trust claim rather than a product claim. Built as a CONTAINED card
+   (matching the announce/final-cta card family) rather than a fourth
+   full-bleed dark section — the page already deliberately limits itself to
+   three full-bleed dark moments (hero, impact, footer); a fourth would
+   overload that rhythm. Logos reuse the same real files as the logowall
+   section, inverted to white via the same filter technique already used on
+   the nav logo in its dark/transparent state (brightness(0) invert(1)) —
+   these are black silhouette PNGs, so without the invert they'd repeat the
+   invisible-on-dark contrast bug found and fixed elsewhere on this page. */
+.trust-stat { padding: 0 32px var(--space-lg); }
+.trust-stat-card {
+  max-width: 760px;
+  margin: 0 auto;
+  background: var(--dark-1);
+  border-radius: var(--radius-lg);
+  padding: 72px 48px;
+  text-align: center;
+}
+.trust-stat-card .eyebrow--light { display: block; margin-bottom: 22px; }
+.trust-stat-number { font-family: var(--serif); font-weight: 400; font-size: clamp(64px, 9vw, 108px); line-height: 1; color: var(--accent-bright); }
+.trust-stat-desc { max-width: 42ch; margin: 20px auto 40px; color: rgba(250,248,244,0.72); font-size: 16px; line-height: 1.55; }
+.trust-stat-logos { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 32px 40px; }
+.trust-stat-logos img { height: 22px; width: auto; filter: brightness(0) invert(1); opacity: 0.75; }
+@media (max-width: 640px) {
+  .trust-stat-card { padding: 56px 28px; }
+  .trust-stat-logos { gap: 22px 28px; }
+  .trust-stat-logos img { height: 18px; }
+}
+
+/* ---------- Journey — one project's real path through the record ----------
+   New section (V2 pass): the page had two ways to learn what Envisor does —
+   an accordion (categorized, interactive) and a workflow list (plain text,
+   no imagery) — but nothing that actually showed one project moving through
+   the system as a single thread. This uses four real screenshots already in
+   the asset library, in the order a project actually moves through them,
+   connected by a plain hairline rather than boxed into cards — closer to
+   how confident, editorial B2B sites narrate a single case rather than
+   listing disconnected features. Copy is reused verbatim from this same
+   page's accordion panels and workflow steps, not new claims. */
+.journey { padding: var(--space-lg) 32px; }
+.journey-track { max-width: var(--max); margin: 0 auto; display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; position: relative; }
+.journey-step { display: flex; flex-direction: column; }
+.journey-media { aspect-ratio: 4/3; overflow: hidden; border-radius: var(--radius-sharp); border: 1px solid var(--border); margin-bottom: 22px; }
+.journey-media img { width: 100%; height: 100%; object-fit: cover; object-position: top; display: block; }
+.journey-body { padding-right: 20px; }
+.journey-num { display: block; font-family: var(--serif); font-size: 22px; color: var(--accent-2); margin-bottom: 10px; }
+.journey-step h3 { font-size: 17px; font-weight: 600; margin-bottom: 8px; }
+.journey-step p { font-size: 14.5px; line-height: 1.55; color: var(--muted); }
+@media (max-width: 980px) {
+  .journey-track { grid-template-columns: 1fr 1fr; gap: 40px 24px; }
+}
+@media (max-width: 640px) {
+  .journey-track { grid-template-columns: 1fr; gap: 36px; }
+  .journey-body { padding-right: 0; }
+}
+
 /* ---------- Platform accordion (Legora expanding capsules) ----------
    Rebuilt after a side-by-side re-check against legora.com's live
    "Introducing the Legora aOS" section — the component this was sampled from
@@ -597,7 +668,7 @@ p { margin: 0; }
 }
 .accordion-toggle::before { width: 9px; height: 1.3px; }
 .accordion-toggle::after { width: 1.3px; height: 9px; transition: opacity 0.2s ease; }
-.accordion-row.is-open .accordion-toggle { background: var(--accent); }
+.accordion-row.is-open .accordion-toggle { background: var(--accent-bright); }
 .accordion-row.is-open .accordion-toggle::after { opacity: 0; }
 .accordion-panel {
   display: grid;
@@ -674,7 +745,7 @@ p { margin: 0; }
    per-stat kicker is a plain sentence-case lede. */
 .impact .sec-head { text-align: left; margin: 0 0 64px; }
 .impact .sec-head h2 { color: var(--bg); margin: 0; }
-.impact .sec-head .eyebrow { color: var(--accent); } /* bright, not --accent-2 — deep amber goes muddy on dark grounds */
+.impact .sec-head .eyebrow { color: var(--accent-bright); } /* --accent itself is a dark green, unreadable on this dark band */
 .impact-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -739,7 +810,7 @@ p { margin: 0; }
   padding: 76px 48px;
   text-align: center;
 }
-.final-cta-eyebrow { display: block; font-size: 12px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); margin-bottom: 20px; }
+.final-cta-eyebrow { display: block; font-size: 12px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent-bright); margin-bottom: 20px; }
 /* 18ch forced this headline into four lines inside an 880px card — widened so
    it sets in three, with text-wrap:balance handling the break points. */
 .final-cta h2 { font-family: var(--serif); font-weight: 400; line-height: 1.05; letter-spacing: -0.01em; color: var(--bg); font-size: clamp(30px, 4vw, 48px); max-width: 24ch; margin: 0 auto 36px; }
@@ -762,7 +833,7 @@ p { margin: 0; }
 .footer-brand p { font-size: 14px; color: rgba(250,250,249,0.55); max-width: 26ch; line-height: 1.5; margin-bottom: 24px; }
 .footer-col h5 { font-size: 12px; text-transform: uppercase; letter-spacing: 0.08em; color: rgba(250,250,249,0.4); margin-bottom: 14px; }
 .footer-col a { display: block; font-size: 14px; padding: 6px 0; color: var(--bg); }
-.footer-col a:hover { color: var(--accent); }
+.footer-col a:hover { color: var(--accent-bright); }
 .footer-bottom { max-width: var(--max); margin: 48px auto 0; padding-top: 24px; border-top: 1px solid rgba(250,250,249,0.12); font-size: 13px; color: rgba(250,250,249,0.4); }
 @media (max-width: 860px) { .footer-inner { grid-template-columns: 1fr 1fr; } }
 
