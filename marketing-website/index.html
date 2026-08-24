@@ -116,15 +116,45 @@
     color: var(--text-muted);
     font-size: 0.8rem;
   }
+  .section-heading {
+    width: 100%;
+    max-width: 980px;
+    margin: 0 0 1.25rem;
+    font-size: 0.8rem;
+    font-weight: 650;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--text-muted);
+  }
+  .featured {
+    margin-bottom: 3.5rem;
+  }
+  a.card.featured-card {
+    border-color: var(--accent);
+    border-width: 1.5px;
+  }
 </style>
 </head>
 <body>
   <header>
     <a class="back" href="../">← Back to Envisor</a>
     <h1>Marketing Website</h1>
-    <p>Ten in-progress design directions. V6&ndash;V10 are five independent concepts, each modeled top-to-bottom on a different real reference site &mdash; own hero, palette, type, and nav, not a shared template.</p>
+    <p>Live Harvey-styled prototype, plus ten archived design directions. V6&ndash;V10 are five independent concepts, each modeled top-to-bottom on a different real reference site &mdash; own hero, palette, type, and nav, not a shared template.</p>
   </header>
 
+  <div class="section-heading">Featured</div>
+  <main class="cards featured">
+    <a class="card featured-card" href="https://www.envisor.ai/new-home" target="_blank" rel="noopener">
+      <div>
+        <div class="kicker">Sprint Q</div>
+        <h2>Harvey Prototype</h2>
+        <p>Live build of the Harvey-inspired direction, running as its own full-stack app (not a static mockup like the archived versions below).</p>
+      </div>
+      <span class="go">View live site →</span>
+    </a>
+  </main>
+
+  <div class="section-heading">Archived</div>
   <main class="cards">
     <a class="card" href="../marketing-v1/">
       <div>
