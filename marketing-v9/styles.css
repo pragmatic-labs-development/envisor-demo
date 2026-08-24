@@ -706,6 +706,33 @@ p { margin: 0; }
   .accordion-kicker, .accordion-panel p, .kb-tags { padding-left: 20px; padding-right: 20px; }
 }
 
+/* ---------- Grounded knowledge base (Hebbia audit v2) ----------
+   hebbia.com's real "integration grid" pattern — many small icon+label tiles
+   in dense rows, proving breadth of what the system actually connects to.
+   Envisor's real equivalent already existed as five tags buried inside the
+   Knowledge Base accordion row (closed by default, easy to miss entirely):
+   EIRs, MNDs, Technical Studies, Statutes, Agency Protocols. Surfaced here
+   as their own moment rather than inventing a fake integrations list. */
+.grounded { padding: var(--space-lg) 32px; }
+.grounded-inner { max-width: var(--max); margin: 0 auto; }
+.grounded-head { max-width: 620px; margin: 0 auto 44px; text-align: center; }
+.grounded-head h2 { font-family: var(--serif); font-weight: 400; line-height: 1.05; letter-spacing: var(--lts-display); font-size: clamp(26px, 3.2vw, 36px); margin: 14px 0 12px; }
+.grounded-head p { color: var(--muted); font-size: 15.5px; line-height: 1.55; }
+.grounded-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; }
+.grounded-tile {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 20px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sharp);
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--ink);
+}
+.grounded-icon { display: inline-flex; color: var(--accent-2); flex-shrink: 0; }
+@media (max-width: 640px) { .grounded-grid { gap: 10px; } .grounded-tile { padding: 12px 16px; font-size: 13px; } }
+
 /* ---------- Workflow ----------
    Rebalanced against permitflow.com's equivalent section: this was the
    thinnest section on the page despite being the "how it works" explainer a
